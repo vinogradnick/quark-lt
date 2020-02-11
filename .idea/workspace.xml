@@ -35,6 +35,7 @@
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
@@ -72,6 +73,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="115" key="#Go_Modules_(vgo)" timestamp="1581443578725">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="115" key="#Go_Modules_(vgo)/0.0.1440.900@0.0.1440.900" timestamp="1581443578725" />
     <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1581439145800">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
