@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/quark_lt.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quark_lt/controller/quark_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quark_lt/quark_lt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quark_lt/quark_scheduler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quark_server/quark_server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quarklt/cli.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/quarklt/quarklt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/worker/worker.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/util/worker/worker_scheduler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/quarklt/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +42,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/build/linux" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/internal/util/worker" />
     </key>
