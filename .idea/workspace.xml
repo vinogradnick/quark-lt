@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/quark_scheduler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/quark_scheduler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/worker/worker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/worker/worker_scheduler.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +32,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -42,6 +47,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/util/agents/ssh_agent" />
+      <recent name="$PROJECT_DIR$/internal/util" />
       <recent name="$PROJECT_DIR$/build/linux" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/internal/util/worker" />
@@ -77,9 +84,13 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="115" key="#Go_Modules_(vgo)/0.0.1440.900@0.0.1440.900" timestamp="1581443578725" />
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1581439145800">
+    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581444370414">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1581439145800" />
+    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1581444370414" />
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1581503202348">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1581503202348" />
   </component>
 </project>
