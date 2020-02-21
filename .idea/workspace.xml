@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/quark_lt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quark_lt.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/quark_scheduler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/quark_scheduler.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/worker/worker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/worker/worker_scheduler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_node/quark_node_scheduler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node_scheduler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/agents/ssh_agent/ssh_agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/agents/ssh_agent/ssh_agent.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/config/quarkload.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/quarkload.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/config/schedule_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/schedule_conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/config/site_setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/site_setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/worker/algorithm/algo.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/algorithm/algo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/worker/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/worker.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +54,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/internal/util/agents/ssh_agent" />
       <recent name="$PROJECT_DIR$/internal/util" />
       <recent name="$PROJECT_DIR$/build/linux" />
-      <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/internal/util/worker" />
     </key>
   </component>
@@ -84,13 +91,13 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="115" key="#Go_Modules_(vgo)/0.0.1440.900@0.0.1440.900" timestamp="1581443578725" />
-    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581444370414">
+    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581517535427">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1581444370414" />
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1581503202348">
+    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1581517535427" />
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1581533761298">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1581503202348" />
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1581533761298" />
   </component>
 </project>
