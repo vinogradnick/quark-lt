@@ -1,0 +1,16 @@
+service SendMetric {
+  // Sends a greeting
+  rpc SendMetric (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message MetricSender {
+  ResponseTime time.Duration
+  ResponseCode int
+}
+
+// The response message containing the greetings
+message MetricReceive {
+    ResponseTime time.Duration
+ 	ResponseCode int
+}

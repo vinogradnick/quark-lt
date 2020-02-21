@@ -1,7 +1,7 @@
 package config
 
 
-type ShipLoadConfig struct {
+type QuarkLTConfig struct {
 	Name      string        `yaml:"name"`
 	SiteSetup SiteSetupConf `yaml:"site-setup"`
 }
