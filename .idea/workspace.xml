@@ -2,23 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/quark_lt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/quark_lt.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark_node/quark_node_scheduler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node_scheduler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/agents/ssh_agent/ssh_agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/agents/ssh_agent/ssh_agent.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/algorithm/algo.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/algorithm/algo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/worker.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/util/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/quarkload.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/quarkload.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/util/config/schedule_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/schedule_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/site_setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/config/site_setup.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/worker/algorithm/algo.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/algorithm/algo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/worker/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_worker/worker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/util/uuid/uuid_generator.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/util/uuid/uuid_generator.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,6 +55,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="clickhouse" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -91,6 +107,14 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="115" key="#Go_Modules_(vgo)/0.0.1440.900@0.0.1440.900" timestamp="1581443578725" />
+    <state x="560" y="205" key="#Intentions" timestamp="1582468155951">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="560" y="205" key="#Intentions/0.0.1920.1080@0.0.1920.1080" timestamp="1582468155951" />
+    <state x="560" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582378331238">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="560" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1582378331238" />
     <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581517535427">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

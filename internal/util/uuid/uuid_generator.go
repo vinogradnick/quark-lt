@@ -7,5 +7,5 @@ func GenerateUuid() string {
 	if err != nil {
 		panic(err)
 	}
-	return u2
+	return u2.String()
 }

@@ -1,11 +1,17 @@
 package quark_node
 
 import (
+	"context"
+	"fmt"
 	"github.com/fasthttp/router"
 	"github.com/quark_lt/cmd/quark_server"
+	"github.com/quark_lt/cmd/quark_worker"
+	"github.com/quark_lt/cmd/quark_worker/algorithm"
 	"github.com/quark_lt/internal/util/agents/ssh_agent"
 	"github.com/quark_lt/internal/util/config"
+	"github.com/quark_lt/internal/util/uuid"
 	"github.com/valyala/fasthttp"
+	"go.uber.org/zap"
 )
 
 type QuarkNode struct {
@@ -34,11 +40,23 @@ func (node QuarkNode) StartSshAgent() {
 		ctx.WriteString(node.SshAgent.ReadMetric())
 	})
 }
-func (node QuarkNode) StartWorker() {
-
+func (node QuarkNode) StartWorker(ctx *context.Context) {
+	worker := quark_worker.NewWorker()
+	node.Scheduler = NewQuarkNodeScheduler(3000)
+	for _, scheduleConfig := range node.Config.SiteSetup.Schedules {
+		factory := algorithm.NewAlgoFactory(worker, scheduleConfig)
+		node.Scheduler.Nodes[uuid.GenerateUuid()] = factory
+		factory.StartTesting()
+	}
 }
 
 func RunQuarkNode(id int, config config.QuarkLTConfig) {
+	ctx := context.Background()
+	ctx, err := context.WithCancel(ctx)
+	if err != nil {
+		zap.L().Error(fmt.Sprint("Error of creating context with cancel {0}", err))
+		panic(err)
+	}
 	node := NewQuarkNode(id, config)
 	node.StartSshAgent()
 	node.StartServer()

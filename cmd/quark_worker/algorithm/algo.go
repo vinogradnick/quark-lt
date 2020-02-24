@@ -2,6 +2,8 @@ package algorithm
 
 import (
 	"github.com/quark_lt/cmd/quark_worker"
+	"github.com/quark_lt/internal/util/config"
+	"time"
 )
 
 type AbstractAlgoFactory interface {
@@ -16,14 +18,42 @@ type AbstractAlgoFactory interface {
 }
 type AlgoFactory struct {
 	Worker *quark_worker.Worker
+	Config *config.ScheduleConf
+
 }
 
-func NewAlgoFactory(worker *quark_worker.Worker) *AlgoFactory {
-	return &AlgoFactory{worker: worker}
+func NewAlgoFactory(worker *quark_worker.Worker,conf *config.ScheduleConf) *AlgoFactory {
+	return &AlgoFactory{Worker: worker,Config:conf}
+}
+func (a AlgoFactory) StartTesting()  {
+	if a.Config.Validate(){
+		for _,data:=range a.Config.StepLoad  {
+			a.Step(data)
+			a.Worker.Wg.Wait()
+		}
+	}
+
 }
 
-func (a AlgoFactory) Const() {
-	panic("implement me")
+func (a AlgoFactory) Const(conf *config.ConstConf) {
+	var i int32
+	startWorkers := conf.Value
+	timerData := quark_worker.DurationConvertation(conf.Duration)
+	tickerDuration := time.Duration(timerData)
+	for i = 0; i < startWorkers; i++ {
+		a.Worker.CreateHitThread()
+	}
+
+	ticker := time.NewTicker(tickerDuration * time.Millisecond)
+
+	for range ticker.C {
+		for i = 0; i < startWorkers; i++ {
+			a.Worker.CreateHitThread()
+		}
+	}
+	ticker.Stop()
+	a.Worker.Wg.Wait()
+	return
 }
 
 func (a AlgoFactory) Linear() {

@@ -3,16 +3,15 @@ package quark_node
 import (
 	"github.com/fasthttp/router"
 	"github.com/quark_lt/cmd/quark_server"
-	"github.com/quark_lt/cmd/quark_worker"
-	"github.com/quark_lt/internal/util/config"
+	"github.com/quark_lt/cmd/quark_worker/algorithm"
 )
 
 type QuarkNodeScheduler struct {
-	Nodes  map[int]*quark_worker.Worker
-	Config config.ScheduleConf
+	Nodes  map[string]*algorithm.AlgoFactory
 }
 
 func NewQuarkNodeScheduler(port int) *QuarkNodeScheduler {
 	quark_server.InitServer("worker_server", port, router.New())
-	return &QuarkNodeScheduler{Nodes: map[int]*quark_worker.Worker{}}
+
+	return &QuarkNodeScheduler{Nodes: map[string]*algorithm.AlgoFactory{}}
 }

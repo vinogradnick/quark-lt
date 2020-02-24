@@ -21,20 +21,17 @@ type Worker struct {
 	Wg         sync.WaitGroup
 	StatusChan chan bool
 	Uuid       string
+	ExportUrl  string
 }
 
-func NewWorker(config config.ScheduleConf) *Worker {
-
-	factory := algorithm.AlgoFactory{Worker: worker}
-	schedule := config.SiteSetup.Schedule
-	factory.Step(schedule.StepLoad)
+func NewWorker(host string) *Worker {
 	return &Worker{
 		MetricChan: make(chan metric.Metrics),
 		Counter:    0,
-		Host:       config.Routes[0],
 		Client:     fasthttp.Client{Name: "http://localhost:3000"},
 		StatusChan: make(chan bool),
 		Uuid:       uuid.GenerateUuid(),
+		ExportUrl:  host,
 	}
 
 }
@@ -50,7 +47,7 @@ func (worker Worker) SendMetric() {
 		case data := <-worker.MetricChan:
 			flex, err := json.Marshal(data)
 			byteArr := []byte(string(flex))
-			http.Post("localhost:300", "application/json", bytes.NewBuffer(byteArr))
+			http.Post(worker.ExportUrl, "application/json", bytes.NewBuffer(byteArr))
 			if err != nil {
 				panic(err)
 			}
@@ -64,9 +61,3 @@ func (w Worker) CreateHitThread() {
 
 }
 
-func RunWorker(config config.ScheduleConf) {
-	worker := NewWorker(config)
-	go worker.SendMetric()
-	factory := algorithm.NewAlgoFactory(worker)
-	factory.Step()
-}
