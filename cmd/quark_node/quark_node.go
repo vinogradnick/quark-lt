@@ -7,9 +7,9 @@ import (
 	"github.com/quark_lt/cmd/quark_server"
 	"github.com/quark_lt/cmd/quark_worker"
 	"github.com/quark_lt/cmd/quark_worker/algorithm"
-	"github.com/quark_lt/internal/util/agents/ssh_agent"
-	"github.com/quark_lt/internal/util/config"
-	"github.com/quark_lt/internal/util/uuid"
+	"github.com/quark_lt/pkg/util/agents/ssh_agent"
+	"github.com/quark_lt/pkg/util/config"
+	"github.com/quark_lt/pkg/util/uuid"
 	"github.com/valyala/fasthttp"
 	"go.uber.org/zap"
 )

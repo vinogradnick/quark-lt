@@ -1,0 +1,7 @@
+schedules:
+  - step-load:
+      start: 1
+      end: 10
+      duration: 2min
+      step: 1
+

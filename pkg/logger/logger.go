@@ -6,9 +6,9 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
-func InitLogger(name string) *zap.Logger {
+func InitLogger(name string) {
 	w := zapcore.AddSync(&lumberjack.Logger{
-		Filename:   "examples/logs/" + name + ".log",
+		Filename:   " ~/go/src/gitlab.com/quark_worker" + name + ".log",
 		MaxSize:    500, // megabytes
 		MaxBackups: 3,
 		MaxAge:     28, // days
@@ -18,5 +18,9 @@ func InitLogger(name string) *zap.Logger {
 		w,
 		zap.InfoLevel,
 	)
-	return zap.New(core)
+	logger := zap.New(core)
+	if logger != nil {
+
+	}
+	zap.L().Info("flex")
 }

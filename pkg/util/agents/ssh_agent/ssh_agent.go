@@ -3,8 +3,8 @@ package ssh_agent
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/quark_lt/internal/util/config"
 	"github.com/quark_lt/pkg/parser"
+	"github.com/quark_lt/pkg/util/config"
 	"golang.org/x/crypto/ssh"
 	"time"
 )

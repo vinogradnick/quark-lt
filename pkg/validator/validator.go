@@ -1,9 +1,21 @@
-package quark_worker
+package validator
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 )
+
+type Validator interface {
+	Validate() bool
+}
+
+func PositiveValidate(value int32) error {
+	if value <= 0 {
+		return errors.New("value aren't postive")
+	}
+	return nil
+}
 
 func DurationConvertation(duration string) int64 {
 	var str string
