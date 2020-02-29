@@ -7,7 +7,7 @@ import (
 )
 
 func GetCpuAvInfo(session *ssh.Session, output *bytes.Buffer) float64 {
-	err = session.Run(`grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage ""}'`)
+	err := session.Run(`grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage ""}'`)
 	if err != nil {
 		panic(err)
 	}

@@ -3,7 +3,7 @@ package ssh_agent
 import (
 	"bytes"
 	"github.com/quark_lt/pkg/metrics"
-	"github.com/quark_lt/pkg/parser"
+
 	"github.com/quark_lt/pkg/util/config"
 	"golang.org/x/crypto/ssh"
 )
@@ -32,9 +32,6 @@ func NewSshAgent(config *config.SshAgentConf) *SshAgent {
 func (agent SshAgent) ReadMetric() *metrics.SSHMetrics {
 	var b bytes.Buffer
 	agent.session.Stdout = &b
-	if err != nil {
-		panic(err)
-	}
 	return NewTargetMetrics(GetMemoryInfo(agent.session, &b), GetCpuAvInfo(agent.session, &b))
 }
 
@@ -43,14 +40,15 @@ func NewTargetMetrics(mem *metrics.MemoryInfo, cpu float64) *metrics.SSHMetrics 
 }
 
 func authParse(authMethod *config.AuthMethod) []ssh.AuthMethod {
-	key := []ssh.AuthMethod{}
+	var key []ssh.AuthMethod
 	if authMethod.KeyAuth != nil {
-		bytearr, err := parser.ReadFile(config.AuthMethod.KeyAuth.Path)
-		if err != nil {
-			panic(err)
-		}
-		privateKey, err = ssh.ParseRawPrivateKey(bytearr)
-		key = []ssh.AuthMethod{privateKey}
+		//bytearr := config.ReadFile(authMethod.KeyAuth.Path)
+
+		//privateKey, err := ssh.ParsePrivateKey(bytearr)
+		//if err != nil {
+		//	log.Fatal(err)
+		//}
+		//todo исправить авторизацию пользователя
 	} else {
 		key = []ssh.AuthMethod{ssh.Password(authMethod.UserAuth.Password)}
 	}

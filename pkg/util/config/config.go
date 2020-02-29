@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"log"
 
 	"os"
 )
 
 type QuarkLTConfig struct {
-	Name      string        `yaml:"name"`
-	SiteSetup SiteSetupConf `yaml:"site-setup"`
+	Name       string        `yaml:"name"`
+	ServerHost string        `yaml:"server-host"`
+	SiteSetup  SiteSetupConf `yaml:"site-setup"`
 }
 
 type Helpers struct {
@@ -51,7 +53,7 @@ func LoadConfig(path string, networkFlag bool) *QuarkLTConfig {
 	if networkFlag {
 		//data = parseUrl(path)
 	} else {
-		data = readfile(path)
+		data = ReadFile(path)
 	}
 	cfg := QuarkLTConfig{}
 	err := yaml.Unmarshal(data, &cfg)
@@ -78,6 +80,13 @@ func ParseSshConfig(data string) (SshAgentConf, error) {
 	err := yaml.Unmarshal([]byte(data), &cfg)
 	return cfg, err
 }
+func ParseToString(v interface{}) string {
+	data, err := yaml.Marshal(v)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(data)
+}
 
 //func parseUrl(url string) []byte {
 //
@@ -92,7 +101,7 @@ func ParseSshConfig(data string) (SshAgentConf, error) {
 //	return body
 //}
 
-func readfile(path string) []byte {
+func ReadFile(path string) []byte {
 	file, fileErr := os.Open(path)
 	if fileErr != nil {
 		panic(fileErr)

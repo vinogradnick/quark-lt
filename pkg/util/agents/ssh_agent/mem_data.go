@@ -2,17 +2,17 @@ package ssh_agent
 
 import (
 	"bytes"
+	"github.com/quark_lt/pkg/metrics"
 	"golang.org/x/crypto/ssh"
 	"strconv"
 	"strings"
 )
 
-
-func ParseMemory(data string) *MemoryInfo {
+func ParseMemory(data string) *metrics.MemoryInfo {
 
 	parsor := strings.Split(data, " ")
 
-	return &MemoryInfo{
+	return &metrics.MemoryInfo{
 		Total:  parse(parsor[37]),
 		Used:   parse(parsor[42]),
 		Free:   parse(parsor[47]),
@@ -27,8 +27,8 @@ func parse(data string) uint32 {
 	}
 	return uint32(arrData)
 }
-func GetMemoryInfo(session *ssh.Session, output *bytes.Buffer) *MemoryInfo {
-	err = session.Run("free")
+func GetMemoryInfo(session *ssh.Session, output *bytes.Buffer) *metrics.MemoryInfo {
+	err := session.Run("free")
 	if err != nil {
 		panic(err)
 	}

@@ -5,7 +5,7 @@ import (
 )
 
 type ScheduleConf struct {
-	Routes     []string               `yaml:"routes"`
+	Route      string                 `yaml:"routes"`
 	StepLoad   *algorithms.StepConf   `yaml:"step-load"`
 	ConstLoad  *algorithms.ConstConf  `yaml:"const-load"`
 	LinearLoad *algorithms.LinearConf `yaml:"line-load"`
