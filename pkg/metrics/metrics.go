@@ -1,6 +1,8 @@
 package metrics
 
-import "time"
+import (
+	"time"
+)
 
 type Metrics struct {
 	ResponseTime time.Duration `json:"responseTime"`
@@ -12,7 +14,13 @@ func NewMetrics(responseCode int, responseTime time.Duration) *Metrics {
 }
 
 type SSHMetrics struct {
-	MemoryFree float32
-	CpuLoad    float32
-	IoLoad     float32
+	MemoryInfo *MemoryInfo `json:"memoryInfo"`
+	CpuLoad    float64     `json:"cpuLoad"`
+	IoLoad     float32     `json:"ioLoad"`
+}
+type MemoryInfo struct {
+	Total  uint32
+	Used   uint32
+	Free   uint32
+	Caches uint32
 }

@@ -2,18 +2,11 @@ package ssh_agent
 
 import (
 	"bytes"
-	"encoding/json"
+	"github.com/quark_lt/pkg/metrics"
 	"github.com/quark_lt/pkg/parser"
 	"github.com/quark_lt/pkg/util/config"
 	"golang.org/x/crypto/ssh"
-	"time"
 )
-
-type TargetMetrics struct {
-	Memory  *MemoryInfo
-	CpuLoad float64
-	Date    time.Time
-}
 
 type SshAgent struct {
 	session *ssh.Session
@@ -36,18 +29,17 @@ func NewSshAgent(config *config.SshAgentConf) *SshAgent {
 		client:  client,
 	}
 }
-func (agent SshAgent) ReadMetric() string {
+func (agent SshAgent) ReadMetric() *metrics.SSHMetrics {
 	var b bytes.Buffer
 	agent.session.Stdout = &b
-	data, err := json.Marshal(NewTargetMetrics(GetMemoryInfo(agent.session, &b), GetCpuAvInfo(agent.session, &b)))
 	if err != nil {
 		panic(err)
 	}
-	return string(data)
+	return NewTargetMetrics(GetMemoryInfo(agent.session, &b), GetCpuAvInfo(agent.session, &b))
 }
 
-func NewTargetMetrics(mem *MemoryInfo, cpu float64) *TargetMetrics {
-	return &TargetMetrics{date: time.Now(), Memory: mem, CpuLoad: cpu}
+func NewTargetMetrics(mem *metrics.MemoryInfo, cpu float64) *metrics.SSHMetrics {
+	return &metrics.SSHMetrics{MemoryInfo: mem, CpuLoad: cpu}
 }
 
 func authParse(authMethod *config.AuthMethod) []ssh.AuthMethod {

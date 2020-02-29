@@ -7,12 +7,6 @@ import (
 	"strings"
 )
 
-type MemoryInfo struct {
-	Total  uint32
-	Used   uint32
-	Free   uint32
-	Caches uint32
-}
 
 func ParseMemory(data string) *MemoryInfo {
 
