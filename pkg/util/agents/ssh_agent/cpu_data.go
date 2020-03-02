@@ -1,19 +1,16 @@
 package ssh_agent
 
 import (
-	"bytes"
-	"golang.org/x/crypto/ssh"
+	"fmt"
 	"strconv"
+	"strings"
 )
 
-func GetCpuAvInfo(session *ssh.Session, output *bytes.Buffer) float64 {
-	err := session.Run(`grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage ""}'`)
+func GetCpuAvInfo(data string) float64 {
+
+	val, err := strconv.ParseFloat(strings.Trim(data, "\n"), 64)
 	if err != nil {
-		panic(err)
-	}
-	data := output.String()
-	val, err := strconv.ParseFloat(data, 64)
-	if err != nil {
+		fmt.Println("val")
 		panic(err)
 	}
 	return val

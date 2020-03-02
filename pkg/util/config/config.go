@@ -24,7 +24,7 @@ type Helpers struct {
 type SshAgentConf struct {
 	Host string `yaml:"host"`
 	User string `yaml:"user"`
-	Port string `yaml:"port"`
+	Port int    `yaml:"port"`
 
 	AuthMethod *AuthMethod `yaml:"auth-method"`
 }

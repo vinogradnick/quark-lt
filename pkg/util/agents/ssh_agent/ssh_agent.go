@@ -2,37 +2,46 @@ package ssh_agent
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/quark_lt/pkg/metrics"
-
 	"github.com/quark_lt/pkg/util/config"
 	"golang.org/x/crypto/ssh"
+	"io"
+	"log"
 )
 
 type SshAgent struct {
-	session *ssh.Session
-	client  *ssh.Client
+	pipe    io.WriteCloser
+	Session *ssh.Session
+	Client  *ssh.Client
 }
 
-func NewSshAgent(config *config.SshAgentConf) *SshAgent {
+func NewSshAgent(conf *config.SshAgentConf) *SshAgent {
+	fmt.Println(fmt.Sprintf("%s:%d", conf.Host, conf.Port))
 	sshConfig := &ssh.ClientConfig{
-		User: config.User,
-		Auth: authParse(config.AuthMethod),
+		User:            conf.User,
+		Auth:            authParse(conf.AuthMethod),
+		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-
-	client, err := ssh.Dial("tcp", config.Host+" -p "+config.Port, sshConfig)
-	session, err := client.NewSession()
+	client, err := ssh.Dial("tcp", "localhost:22", sshConfig)
 	if err != nil {
+		fmt.Println("tcp err")
 		panic(err)
 	}
+
 	return &SshAgent{
-		session: session,
-		client:  client,
+
+		Client: client,
 	}
 }
-func (agent SshAgent) ReadMetric() *metrics.SSHMetrics {
+func (agent *SshAgent) ReadMetric() *metrics.SSHMetrics {
+	session, err := agent.Client.NewSession()
+	log.Println(err)
+	defer session.Close()
 	var b bytes.Buffer
-	agent.session.Stdout = &b
-	return NewTargetMetrics(GetMemoryInfo(agent.session, &b), GetCpuAvInfo(agent.session, &b))
+	session.Stdout = &b
+	mem, cp := GetMemoryInfo(session, &b)
+	return NewTargetMetrics(mem, cp)
 }
 
 func NewTargetMetrics(mem *metrics.MemoryInfo, cpu float64) *metrics.SSHMetrics {
@@ -40,17 +49,18 @@ func NewTargetMetrics(mem *metrics.MemoryInfo, cpu float64) *metrics.SSHMetrics 
 }
 
 func authParse(authMethod *config.AuthMethod) []ssh.AuthMethod {
-	var key []ssh.AuthMethod
-	if authMethod.KeyAuth != nil {
-		//bytearr := config.ReadFile(authMethod.KeyAuth.Path)
 
-		//privateKey, err := ssh.ParsePrivateKey(bytearr)
-		//if err != nil {
-		//	log.Fatal(err)
-		//}
+	if authMethod.KeyAuth != nil {
+		bytearr := config.ReadFile(authMethod.KeyAuth.Path)
+
+		privateKey, err := ssh.ParsePrivateKey(bytearr)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return []ssh.AuthMethod{ssh.PublicKeys(privateKey)}
 		//todo исправить авторизацию пользователя
 	} else {
-		key = []ssh.AuthMethod{ssh.Password(authMethod.UserAuth.Password)}
+		fmt.Println(authMethod.UserAuth.Password)
+		return []ssh.AuthMethod{ssh.Password(authMethod.UserAuth.Password)}
 	}
-	return key
 }

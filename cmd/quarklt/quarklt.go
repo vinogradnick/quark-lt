@@ -1,1 +1,5 @@
 package quarklt
+
+func main() {
+
+}
