@@ -2,29 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/util/config/algorithms/step_conf.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_node/quark_node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_server/quark_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_server/quark_server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/algorithm/algo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/algorithm/step.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/duration.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/validator/validator.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/http_request.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_worker/worker.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/agents/ssh_agent/cpu_data.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/cpu_data.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/agents/ssh_agent/mem_data.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/mem_data.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/agents/ssh_agent/ssh_agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/ssh_agent.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/quarkload.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/schedule_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/site_setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/site_setup.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/step_conf.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/config/validator.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/metric_server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/metric_server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/util/uuid/uuid_generator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/uuid/uuid_generator.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/parser/file_parser.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/quarklt/client.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/controller/quark_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/controller/quark_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/quark_lt.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/quark_lt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_server/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_server/quark_server.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quarklt/cli.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quarklt/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quarklt/quarklt.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +43,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/go" />
+  <component name="GOROOT" path="/usr/lib/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -78,6 +64,7 @@
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -85,10 +72,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/pkg" />
       <recent name="$PROJECT_DIR$/pkg/util/validator" />
       <recent name="$PROJECT_DIR$/pkg/util/config/algorithms" />
-      <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/internal/util/agents/ssh_agent" />
     </key>
   </component>

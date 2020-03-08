@@ -1,5 +1,0 @@
-package quarklt
-
-func main() {
-
-}

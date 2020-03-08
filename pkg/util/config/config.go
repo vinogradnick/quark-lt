@@ -74,6 +74,7 @@ func ParseSiteSetupString(data string) (SiteSetupConf, error) {
 	err := yaml.Unmarshal([]byte(data), &cfg)
 	return cfg, err
 }
+
 func ParseSshConfig(data string) (SshAgentConf, error) {
 	fmt.Println(data)
 	cfg := SshAgentConf{}
