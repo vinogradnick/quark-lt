@@ -23,14 +23,13 @@ func NewSshAgent(conf *config.SshAgentConf) *SshAgent {
 		Auth:            authParse(conf.AuthMethod),
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-	client, err := ssh.Dial("tcp", "localhost:22", sshConfig)
+	client, err := ssh.Dial("tcp", fmt.Scanf("%s:%d",conf.Host,conf.Port), sshConfig)
 	if err != nil {
 		fmt.Println("tcp err")
 		panic(err)
 	}
 
 	return &SshAgent{
-
 		Client: client,
 	}
 }

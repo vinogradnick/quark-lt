@@ -1,5 +1,5 @@
 name: quarkload
-server-host:
+server-host: localhost
 site-setup:
   schedules:
     - schedule:
@@ -10,7 +10,6 @@ site-setup:
               context: application/json
               statusCode: 200
           - roadmap:
-
         step-load:
           start: 1
           end: 10

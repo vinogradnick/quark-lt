@@ -2,9 +2,9 @@ package config
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
+	"src/gopkg.in/yaml.v2"
 
 	"os"
 )
@@ -48,6 +48,55 @@ type KeyAuth struct {
 	Path string `yaml:"path"`
 }
 
+//Worker config -----------------------------------------
+
+const (
+	IN_MEMORY_TYPE = 1
+	EXTERNAL_TYPE  = 2
+	MICROVM_TYPE   = 3
+)
+
+type WorkerConfig struct {
+	Config       *ScheduleConf `yaml:"config",json:"config"`
+	Target       string        `yaml:"target",json:"target"`
+	ServerConfig *ServerConfig `yaml:"server-config",json:"server_config"`
+	ExporterUrl  string        `yaml:"export-url",json:"export_url"`
+	Uuid         string        `yaml:"uuid",json:"uuid"`
+	Client       string        `yaml:"client",json:"client"`
+	WorkerType   int           `yaml:"worker-type",json:"worker_type"`
+	Platform     string        `yaml:"platform",json:"platform"`
+}
+type ServerConfig struct {
+	Host string `yaml:"host",json:"host"`
+	Port string `yaml:"port",json:"port"`
+}
+type MicroVMConfig struct {
+	Host   string
+	Port   string
+	Config interface{}
+}
+
+/// Node config
+type QuarkNodeConfig struct {
+	ServerConfig *ServerConfig `yaml:"server-config",json:"server_config"`
+	DatabaseUrl  string        `json:"database_url"`
+	ExportUrl    string        `json:"export_url"`
+	WorkerType   string        `json:"worker_type"`
+	WorkerCount  int           `json:"worker_count"`
+	*WorkerConfig
+}
+
+func ParseQuarkNodeConfig(data string) *QuarkNodeConfig {
+	cfg := QuarkNodeConfig{}
+	err := yaml.Unmarshal([]byte(data), &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
+}
+
+///------------------------------------------------------
+
 func LoadConfig(path string, networkFlag bool) *QuarkLTConfig {
 	var data []byte
 	if networkFlag {
@@ -87,6 +136,14 @@ func ParseToString(v interface{}) string {
 		log.Fatal(err)
 	}
 	return string(data)
+}
+func ParseWorkerConfig(data string) *WorkerConfig {
+	cfg := WorkerConfig{}
+	err := yaml.Unmarshal([]byte(data), &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
 }
 
 //func parseUrl(url string) []byte {
