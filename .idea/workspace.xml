@@ -3,14 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/controller/quark_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/controller/quark_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/quark_lt.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/quark_lt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_server/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_server/quark_server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quarklt/cli.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quarklt/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quarklt/quarklt.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dep.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dep.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fgl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fgl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/metrics/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/metrics/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/ssh_agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/ssh_agent.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/step_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/algorithms/step_conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/config/site_setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/site_setup.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/quark" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
@@ -125,5 +125,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1581533761298" />
+    <state x="747" y="313" key="FileChooserDialogImpl" timestamp="1584960100176">
+      <screen x="0" y="26" width="1920" height="1054" />
+    </state>
+    <state x="747" y="313" key="FileChooserDialogImpl/0.26.1920.1054@0.26.1920.1054" timestamp="1584960100176" />
   </component>
 </project>

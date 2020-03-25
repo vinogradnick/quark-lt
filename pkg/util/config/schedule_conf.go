@@ -5,18 +5,20 @@ import (
 )
 
 type ScheduleConf struct {
-	Routing    []*RoadMap             `yaml:"routing"`
-	StepLoad   *algorithms.StepConf   `yaml:"step-load"`
-	ConstLoad  *algorithms.ConstConf  `yaml:"const-load"`
-	LinearLoad *algorithms.LinearConf `yaml:"line-load"`
-	ExpLoad    *algorithms.ExpConf    `yaml:"exp-load"`
+	Routing     []*RoadMap             `json:"routing"`
+	StepLoad    *algorithms.StepConf   `json:"step-load"`
+	ConstLoad   *algorithms.ConstConf  `json:"const-load"`
+	LinearLoad  *algorithms.LinearConf `json:"line-load"`
+	ExpLoad     *algorithms.ExpConf    `json:"exp-load"`
+	Stress      *algorithms.Stress
+	Performance *algorithms.MaxPerformance
 }
 
 type RoadMap struct {
-	Url         string `yaml:"url"`
-	Context     string `yaml:"context"`
-	StatusCode  int    `yaml:"statusCode"`
-	RequestType string `yaml:"requestType"`
+	Url         string `json:"url"`
+	Context     string `json:"context"`
+	StatusCode  int    `json:"statusCode"`
+	RequestType string `json:"requestType"`
 }
 
 func (s ScheduleConf) Validate() bool {

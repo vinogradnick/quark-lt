@@ -1,13 +1,21 @@
-schedule:
-        routing:
-          - roadmap:
-              url: "http://localhost"
-              requestType: GET
-              context: application/json
-              statusCode: 200
-          - roadmap:
-        step-load:
-          start: 1
-          end: 10
-          duration: 2min
-          step: 1
+config:
+    schedule:
+      routing:
+        - roadmap:
+            url: "http://localhost"
+            requestType: GET
+            context: application/json
+            statusCode: 200
+        - roadmap:
+      step-load:
+        start: 1
+        end: 10
+        duration: 2min
+        step: 1
+server-config:
+  host: localhost
+  port: 6000
+export-url: http://localhost:7777
+uuid: commit
+worker-type: 1
+platform: unix

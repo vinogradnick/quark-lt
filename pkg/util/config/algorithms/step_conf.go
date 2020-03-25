@@ -1,15 +1,16 @@
 package algorithms
 
 import (
-	"github.com/quark_lt/pkg/validator"
 	"go.uber.org/zap"
+
+	"github.com/quark_lt/pkg/validator"
 )
 
 type StepConf struct {
-	Start    int32  `yaml:"start"`
-	End      int32  `yaml:"end"`
-	Duration string `yaml:"duration"`
-	Step     int32  `yaml:"step"`
+	Start    int32  `json:"start"`
+	End      int32  `json:"end"`
+	Duration string `json:"duration"`
+	Step     int32  `json:"step"`
 }
 
 func (s StepConf) Validate() bool {
@@ -23,16 +24,12 @@ func (s StepConf) Validate() bool {
 		errorValue++
 
 	}
-	if validator.PositiveValidate(int32(validator.DurationConvertation(s.Duration))) != nil {
-		zap.L().Error("[StepConfig] Duration value has Error value")
-		errorValue++
 
-	}
 	if validator.PositiveValidate(s.Step) != nil {
 		zap.L().Error("[StepConfig] Step value has Error value")
 		errorValue++
 
 	}
-	return errorValue==0
+	return errorValue == 0
 
 }

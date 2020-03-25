@@ -23,10 +23,10 @@ func NewSshAgent(conf *config.SshAgentConf) *SshAgent {
 		Auth:            authParse(conf.AuthMethod),
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-	client, err := ssh.Dial("tcp", fmt.Scanf("%s:%d",conf.Host,conf.Port), sshConfig)
+	client, err := ssh.Dial("tcp", fmt.Sprintf("%s:%d",conf.Host,conf.Port), sshConfig)
 	if err != nil {
 		fmt.Println("tcp err")
-		panic(err)
+
 	}
 
 	return &SshAgent{
@@ -35,7 +35,9 @@ func NewSshAgent(conf *config.SshAgentConf) *SshAgent {
 }
 func (agent *SshAgent) ReadMetric() *metrics.SSHMetrics {
 	session, err := agent.Client.NewSession()
-	log.Println(err)
+	if err!=nil{
+		return nil
+	}
 	defer session.Close()
 	var b bytes.Buffer
 	session.Stdout = &b

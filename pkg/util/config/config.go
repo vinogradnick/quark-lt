@@ -1,51 +1,53 @@
 package config
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"src/gopkg.in/yaml.v2"
-
+	"net/http"
 	"os"
+
+	"gopkg.in/yaml.v2"
 )
 
 type QuarkLTConfig struct {
-	Name       string        `yaml:"name"`
-	ServerHost string        `yaml:"server-host"`
-	SiteSetup  SiteSetupConf `yaml:"site-setup"`
+	Name       string        `json:"name"`
+	ServerHost string        `json:"server-host"`
+	SiteSetup  SiteSetupConf `json:"site-setup"`
 }
 
 type Helpers struct {
-	SshAgent *SshAgentConf `yaml:"ssh-agent"`
+	SshAgent *SshAgentConf `json:"ssh-agent"`
 }
 
 //-----------------------------------------------------------------------------------------------------
 
 type SshAgentConf struct {
-	Host string `yaml:"host"`
-	User string `yaml:"user"`
-	Port int    `yaml:"port"`
+	Host string `json:"host"`
+	User string `json:"user"`
+	Port int    `json:"port"`
 
-	AuthMethod *AuthMethod `yaml:"auth-method"`
+	AuthMethod *AuthMethod `json:"auth-method"`
 }
 
 //-----------------------------------------------------------------------------------------------------
 
 type AuthMethod struct {
-	UserAuth *UserAuth `yaml:"user-auth"`
-	KeyAuth  *KeyAuth  `yaml:"key-auth"`
+	UserAuth *UserAuth `json:"user-auth"`
+	KeyAuth  *KeyAuth  `json:"key-auth"`
 }
 
 //-----------------------------------------------------------------------------------------------------
 
 type UserAuth struct {
-	Password string `yaml:"password"`
+	Password string `json:"password"`
 }
 
 //-----------------------------------------------------------------------------------------------------
 
 type KeyAuth struct {
-	Path string `yaml:"path"`
+	Path string `json:"path"`
 }
 
 //Worker config -----------------------------------------
@@ -57,19 +59,19 @@ const (
 )
 
 type WorkerConfig struct {
-	Config       *ScheduleConf `yaml:"config",json:"config"`
-	Target       string        `yaml:"target",json:"target"`
-	ServerConfig *ServerConfig `yaml:"server-config",json:"server_config"`
-	ExporterUrl  string        `yaml:"export-url",json:"export_url"`
-	Uuid         string        `yaml:"uuid",json:"uuid"`
-	Client       string        `yaml:"client",json:"client"`
-	WorkerType   int           `yaml:"worker-type",json:"worker_type"`
-	Platform     string        `yaml:"platform",json:"platform"`
+	Config       *QuarkLTConfig `json:"config"`
+	ServerConfig *ServerConfig  `json:"server_config"`
+	DatabaseUrl  string         `json:"database_url"`
 }
 type ServerConfig struct {
-	Host string `yaml:"host",json:"host"`
-	Port string `yaml:"port",json:"port"`
+	Host string `json:"host"`
+	Port int    `json:"port"`
 }
+
+func (sc *ServerConfig) GetString() string {
+	return fmt.Sprintf("%s:%d", sc.Host, sc.Port)
+}
+
 type MicroVMConfig struct {
 	Host   string
 	Port   string
@@ -78,19 +80,31 @@ type MicroVMConfig struct {
 
 /// Node config
 type QuarkNodeConfig struct {
-	ServerConfig *ServerConfig `yaml:"server-config",json:"server_config"`
-	DatabaseUrl  string        `json:"database_url"`
-	ExportUrl    string        `json:"export_url"`
-	WorkerType   string        `json:"worker_type"`
-	WorkerCount  int           `json:"worker_count"`
-	*WorkerConfig
+	ServerConfig ServerConfig `json:"server_config"`
+	DatabaseUrl  string       `json:"database_url"`
 }
 
+func ParseMainConfig(arr []byte) *QuarkLTConfig {
+	cfg := QuarkLTConfig{}
+	err := json.Unmarshal(arr, &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
+}
 func ParseQuarkNodeConfig(data string) *QuarkNodeConfig {
 	cfg := QuarkNodeConfig{}
 	err := yaml.Unmarshal([]byte(data), &cfg)
 	if err != nil {
 		log.Fatal(err)
+	}
+	return &cfg
+}
+func ParseQuarkNodeConfigFile(path string) *QuarkNodeConfig {
+	cfg := QuarkNodeConfig{}
+	err := json.Unmarshal(ReadFile(path), &cfg)
+	if err != nil {
+		return nil
 	}
 	return &cfg
 }
@@ -137,9 +151,40 @@ func ParseToString(v interface{}) string {
 	}
 	return string(data)
 }
+func DownloadFile(url string) *QuarkLTConfig {
+
+	// Get the data
+	resp, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	return ParseMainConfig(body)
+
+}
+
+/*
+
+Преобразование данных конфигурации рабочего
+
+@data - структура в виде строки
+
+*/
 func ParseWorkerConfig(data string) *WorkerConfig {
 	cfg := WorkerConfig{}
 	err := yaml.Unmarshal([]byte(data), &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
+}
+func ParseWorkerConfigFile(arr []byte) *WorkerConfig {
+	cfg := WorkerConfig{}
+	err := json.Unmarshal(arr, &cfg)
 	if err != nil {
 		log.Fatal(err)
 	}

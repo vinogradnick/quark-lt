@@ -1,12 +1,12 @@
 package config
 
 type SiteSetupConf struct {
-	Schedules []ScheduleConf `yaml:"schedules"`
-	Helpers   []*Helpers
-	AutoStop  *AutoStop `yaml:"auto-stop"`
+	Schedules []*ScheduleConf `json:"schedules"`
+	Helpers   *Helpers
+	AutoStop  *AutoStop `json:"auto-stop"`
 }
 type AutoStop struct {
-	Quantile      string `yaml:"quantile"`
-	ResponseLimit string `yaml:"responseLimit"`
-	TestTime      string `yaml:"test-time"`
+	Quantile      string `json:"quantile"`
+	ResponseLimit string `json:"responseLimit"`
+	TestTime      string `json:"test-time"`
 }
