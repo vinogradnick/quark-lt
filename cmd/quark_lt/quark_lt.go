@@ -1,7 +1,11 @@
-package quark_lt
+package main
 
-type QuarkLT struct {
-	ApiServerStatus  chan bool
-	ControllerStatus chan bool
-	WebServerStatus  chan bool
+import (
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/quark_lt/cmd/quark_lt/api_server"
+)
+
+
+func main() {
+	api_server.StartServer()
 }
