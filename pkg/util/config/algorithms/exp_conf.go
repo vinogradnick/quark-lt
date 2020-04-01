@@ -1,8 +1,9 @@
 package algorithms
 
 import (
+	"log"
+
 	"github.com/quark_lt/pkg/validator"
-	"go.uber.org/zap"
 )
 
 type ExpConf struct {
@@ -13,11 +14,11 @@ type ExpConf struct {
 func (e ExpConf) Validate() bool {
 	var errorValue int
 	if validator.PositiveValidate(e.Value) != nil {
-		zap.L().Error("[ExpConfig]  Value  has Error value")
+		log.Println("err")
 		errorValue++
 	}
 	if validator.PositiveValidate(int32(validator.DurationConvertation(e.Duration))) != nil {
-		zap.L().Error("[ExpConfig]  Duration value has Error value")
+		log.Println("err")
 		errorValue++
 
 	}

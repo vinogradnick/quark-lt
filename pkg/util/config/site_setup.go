@@ -5,6 +5,10 @@ type SiteSetupConf struct {
 	Helpers   *Helpers
 	AutoStop  *AutoStop `json:"auto-stop"`
 }
+
+/**
+
+ */
 type AutoStop struct {
 	Quantile      string `json:"quantile"`
 	ResponseLimit string `json:"responseLimit"`

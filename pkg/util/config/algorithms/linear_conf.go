@@ -29,5 +29,5 @@ func (l LinearConf) Validate() bool {
 
 	}
 
-	return errorValue==0
+	return errorValue == 0
 }
