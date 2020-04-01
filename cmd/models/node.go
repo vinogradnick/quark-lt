@@ -2,9 +2,9 @@ package models
 
 import "github.com/jinzhu/gorm"
 
-type Node struct {
+type NodeModel struct {
 	gorm.Model
 	id    int
 	Host  string
-	Uuuid string
+	Uuid string
 }

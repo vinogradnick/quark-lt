@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/controller/timeseries_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/controller/users_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/models/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dep.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dep.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fgl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fgl.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/metrics/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/metrics/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/ssh_agent.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/agents/ssh_agent/ssh_agent.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/step_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/algorithms/step_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/site_setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/site_setup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/controller/node_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/controller/node_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/models/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/models/node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/lib/go" />
+  <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -68,7 +65,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/quark" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="go.vgo" />
   </component>
   <component name="RecentsManager">
@@ -79,6 +76,19 @@
       <recent name="$PROJECT_DIR$/pkg/util/config/algorithms" />
       <recent name="$PROJECT_DIR$/internal/util/agents/ssh_agent" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="build_windows" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="build_windows" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile.build_windows" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -106,6 +116,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="179" key="#GOROOT" timestamp="1585748533301">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" key="#GOROOT/0.0.1920.1040@0.0.1920.1040" timestamp="1585748533301" />
     <state x="320" y="115" key="#Go_Modules_(vgo)" timestamp="1581443578725">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -130,5 +144,9 @@
       <screen x="0" y="26" width="1920" height="1054" />
     </state>
     <state x="747" y="313" key="FileChooserDialogImpl/0.26.1920.1054@0.26.1920.1054" timestamp="1584960100176" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1585772867413">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585772867413" />
   </component>
 </project>
