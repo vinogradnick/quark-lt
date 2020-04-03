@@ -24,5 +24,5 @@ type TestModel struct {
 func (model *TestModel) ConvertYaml() {
 	conf := config.QuarkLTConfig{}
 
-	log.Fataln(yaml.Unmarshal([]byte(model.ConfigFile), &conf))
+	log.Fatalln(yaml.Unmarshal([]byte(model.ConfigFile), &conf))
 }

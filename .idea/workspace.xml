@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/controller/timeseries_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/controller/users_controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/models/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/node_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/controller/node_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/models/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/models/node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Flex.http" beforeDir="false" afterPath="$PROJECT_DIR$/examples/Flex.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Group_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples/Group_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/models/test_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/models/test_model.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark_lt/api_server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dep.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/dep.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fgl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/fgl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goog_ltm.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples/goog_ltm.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.md" beforeDir="false" afterPath="$PROJECT_DIR$/examples/report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples/report.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks.md" beforeDir="false" afterPath="$PROJECT_DIR$/examples/tasks.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/two_axis.png" beforeDir="false" afterPath="$PROJECT_DIR$/examples/two_axis.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +49,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="C:\Go" />
+  <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -70,11 +78,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/pkg" />
       <recent name="$PROJECT_DIR$/pkg/util/validator" />
       <recent name="$PROJECT_DIR$/pkg/util/config/algorithms" />
-      <recent name="$PROJECT_DIR$/internal/util/agents/ssh_agent" />
     </key>
   </component>
   <component name="RunManager">
@@ -116,9 +124,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="179" key="#GOROOT" timestamp="1585748533301">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="414" y="155" key="#GOROOT" timestamp="1585910554646">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="414" y="155" key="#GOROOT/0.0.1440.900@0.0.1440.900" timestamp="1585910554646" />
     <state x="552" y="179" key="#GOROOT/0.0.1920.1040@0.0.1920.1040" timestamp="1585748533301" />
     <state x="320" y="115" key="#Go_Modules_(vgo)" timestamp="1581443578725">
       <screen x="0" y="0" width="1440" height="900" />

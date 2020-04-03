@@ -5,7 +5,8 @@ import (
 	"github.com/quark_lt/cmd/quark_lt/api_server"
 )
 
-
 func main() {
-	api_server.StartServer()
+	server := api_server.NewApiServer()
+	server.StartServer()
+
 }

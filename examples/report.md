@@ -64,4 +64,4 @@ CONFIG_DATA
 ### График тестирования
 ![Alt text](./goog_ltm.png)  
 #### Зависимость числа запросов от используемой  памяти
-![Alt text](./two_axis.png)  
+![Alt text](two_axis.png)  
