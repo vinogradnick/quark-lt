@@ -11,7 +11,6 @@ import (
 
 type TestModel struct {
 	gorm.Model
-	Id         int
 	Uuid       string
 	Name       string
 	Host       string

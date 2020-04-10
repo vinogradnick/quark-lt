@@ -3,6 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
+	"log"
 	"net/http"
 
 	"github.com/jinzhu/gorm"
@@ -16,6 +17,13 @@ type AppController struct {
 
 func NewAppController() *AppController {
 	return &AppController{db: db.NewDbWorker()}
+}
+func (app *AppController) RunMigration() {
+
+	app.db.Connect()
+	log.Println("RUN MIGRATION models to database")
+	app.db.Connection.AutoMigrate(&models.TestModel{}, &models.NodeModel{}, &models.User{})
+	app.db.Connection.CreateTable(&models.TestModel{}, &models.NodeModel{}, &models.User{})
 }
 
 /*
@@ -98,6 +106,7 @@ func (app *AppController) GetTestByCommit(w http.ResponseWriter, r *http.Request
 */
 // Create connection in databasel
 func CreateRecord(connection *gorm.DB, value interface{}) error {
+	log.Println("CREATE record database")
 	connection.NewRecord(value)
 	return connection.Create(value).Error
 }

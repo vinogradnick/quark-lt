@@ -4,7 +4,7 @@ import "github.com/jinzhu/gorm"
 
 type User struct {
 	gorm.Model
-	username    string
-	password    string
-	accessLevel int
+	Username    string
+	Password    string
+	AccessLevel int
 }

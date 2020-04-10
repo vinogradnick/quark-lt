@@ -17,9 +17,9 @@ type ApiServer struct {
 func (api *ApiServer) NodeApi(apiRouter *mux.Router, ctl *controller.AppController) {
 	nodeRouter := apiRouter.PathPrefix("/node").Subrouter()
 	nodeRouter.HandleFunc("/create", ctl.CreateNode).Methods("POST")
-	nodeRouter.HandleFunc("/remove", ctl.RemoveNode).Methods("DELETE")
+	nodeRouter.HandleFunc("/remove/{id:[0-9]+}", ctl.RemoveNode).Methods("DELETE")
 	nodeRouter.HandleFunc("/list", ctl.GetNodeList)
-	nodeRouter.HandleFunc("/get/:id", ctl.GetNode)
+	nodeRouter.HandleFunc("/get/{id:[0-9]+}", ctl.GetNode)
 
 }
 
@@ -29,9 +29,9 @@ func (api *ApiServer) NodeApi(apiRouter *mux.Router, ctl *controller.AppControll
 func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *controller.AppController) {
 	testRouter := apiRouter.PathPrefix("/test").Subrouter()
 	testRouter.HandleFunc("/create", ctl.CreateTest).Methods("POST")
-	testRouter.HandleFunc("/remove", ctl.RemoveTest).Methods("DELETE")
+	testRouter.HandleFunc("/remove/{id:[0-9]+}", ctl.RemoveTest).Methods("DELETE")
 	testRouter.HandleFunc("/list", ctl.GetTestList).Methods("GET")
-	testRouter.HandleFunc("/get/:id", ctl.GetTest).Methods("GET")
+	testRouter.HandleFunc("/get/{id:[0-9]+}", ctl.GetTest).Methods("GET")
 }
 
 /**
@@ -50,11 +50,17 @@ func NewApiServer() *ApiServer {
 func (api *ApiServer) StartServer() {
 	ctl := controller.NewAppController()
 
+	ctl.RunMigration()
 	r := mux.NewRouter()
+
 	apiRouter := r.PathPrefix("/api").Subrouter()
 	api.NodeApi(apiRouter, ctl)
 	api.TestApi(apiRouter, ctl)
 	api.UsersApi(apiRouter, ctl)
-
+	log.Println("QuarkLT server started at  port: 7700 ")
+	log.Println("Api server is active on http://localhost:7700/api/")
 	log.Fatalln(http.ListenAndServe(":7700", r))
+}
+func (api *ApiServer) MigrateModels() {
+
 }

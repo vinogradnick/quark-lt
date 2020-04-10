@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"github.com/quark_lt/cmd/models"
+	"log"
 	"net/http"
 )
 
@@ -11,6 +12,7 @@ func (app *AppController) RemoveNode(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	id := vars["id"]
+	log.Println(id)
 	err := app.db.Connection.Delete(models.NodeModel{}, "id =?", id).Error
 	if err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
