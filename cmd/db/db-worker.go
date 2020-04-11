@@ -1,10 +1,14 @@
 package db
 
-import "github.com/jinzhu/gorm"
+import (
+
+	"github.com/jinzhu/gorm"
+)
 
 type DbWorker struct {
-	File       string
-	Connection *gorm.DB
+	File             string
+	Connection       *gorm.DB
+
 }
 
 func NewDbWorker() *DbWorker {
@@ -17,3 +21,4 @@ func (db *DbWorker) Connect() {
 	}
 	db.Connection = connection
 }
+

@@ -2,7 +2,7 @@ package main
 
 import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"github.com/quark_lt/cmd/quark_lt/api_server"
+	"github.com/quark_lt/cmd/api_server"
 	"gitlab.com/quark_worker/pkg/quark_logger"
 )
 

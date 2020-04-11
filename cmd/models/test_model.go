@@ -13,11 +13,12 @@ type TestModel struct {
 	gorm.Model
 	Uuid       string
 	Name       string
-	Host       string
+	Target     string
 	Algorithm  string
 	ConfigFile string
 	Status     bool
 	StartTime  time.Time
+	EndTime    time.Time
 }
 
 func (model *TestModel) ConvertYaml() {

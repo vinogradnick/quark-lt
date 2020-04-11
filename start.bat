@@ -1,0 +1,1 @@
+go build .\cmd\quark_lt\quark_lt.go

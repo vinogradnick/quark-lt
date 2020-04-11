@@ -4,6 +4,8 @@ import "github.com/jinzhu/gorm"
 
 type NodeModel struct {
 	gorm.Model
-	Host  string
-	Uuid string
+	Name        string
+	Host        string
+	DatabaseUrl string
+	Uuid        string
 }
