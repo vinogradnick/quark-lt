@@ -151,6 +151,13 @@ func ParseToString(v interface{}) string {
 	}
 	return string(data)
 }
+func ParseJsonToString(v interface{}) string {
+	data, err := json.Marshal(v)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(data)
+}
 func DownloadFile(url string) *QuarkLTConfig {
 
 	// Get the data

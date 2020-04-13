@@ -1,12 +1,15 @@
 package controller
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/quark_lt/pkg/util/config"
 	"github.com/quark_lt/pkg/util/uuid"
-	"log"
-	"net/http"
 
 	"github.com/jinzhu/gorm"
 	"github.com/quark_lt/cmd/models"
@@ -29,6 +32,7 @@ func (app *AppController) RemoveTest(w http.ResponseWriter, r *http.Request) {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
 	}
+	RespondJSON(w, http.StatusOK, "sucess")
 
 }
 
@@ -45,7 +49,7 @@ func (app *AppController) CreateTest(w http.ResponseWriter, r *http.Request) {
 		Uuid:       uuid.GenerateUuid(),
 		Name:       model.Name,
 		Target:     model.ServerHost,
-		ConfigFile: config.ParseToString(model),
+		ConfigFile: config.ParseJsonToString(model),
 		Algorithm:  "Алгоритма",
 	}
 	if err := CreateRecord(app.db.Connection, &tModel); err != nil {
@@ -88,6 +92,35 @@ func (app *AppController) GetTestByCommit(w http.ResponseWriter, r *http.Request
 	err := app.db.Connection.Find(&test, "name=?", commitName).Error
 	if err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
+	}
+}
+func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	test := models.TestModel{}
+	node := models.NodeModel{}
+	id := vars["id"]
+	err := app.db.Connection.Find(&test, "id =?", id).Error
+	err = app.db.Connection.First(&node).Error
+	err = app.RunInNode(node, test.ConfigFile)
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	RespondJSON(w, http.StatusOK, struct {
+		Status string
+	}{Status: "running"})
+	return
+}
+
+/**
+Run Test inside node
+*/
+func (app *AppController) RunInNode(node models.NodeModel, cfg string) error {
+	_, err := http.Post(fmt.Sprintf("%s/start", node.Host), "application/json", bytes.NewBuffer([]byte(cfg)))
+	if err != nil {
+		return err
+	} else {
+		return nil
 	}
 }
 

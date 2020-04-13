@@ -2,8 +2,8 @@ package config
 
 type SiteSetupConf struct {
 	Schedules []*ScheduleConf `json:"schedules"`
-	Helpers   *Helpers
-	AutoStop  *AutoStop `json:"auto-stop"`
+	Helpers   *Helpers        `json:"helpers"`
+	AutoStop  *AutoStop       `json:"auto-stop"`
 }
 
 /**

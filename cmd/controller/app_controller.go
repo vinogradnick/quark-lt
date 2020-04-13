@@ -21,3 +21,6 @@ func (app *AppController) RunMigration() {
 	app.db.Connection.AutoMigrate(&models.TestModel{}, &models.NodeModel{}, &models.User{})
 	app.db.Connection.CreateTable(&models.TestModel{}, &models.NodeModel{}, &models.User{})
 }
+func (app *AppController) RunNode() {
+	
+}

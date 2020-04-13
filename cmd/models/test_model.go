@@ -16,7 +16,7 @@ type TestModel struct {
 	Target     string
 	Algorithm  string
 	ConfigFile string
-	Status     bool
+	Status     string
 	StartTime  time.Time
 	EndTime    time.Time
 }
