@@ -1,7 +1,8 @@
 package config
 
 import (
-	"github.com/quark_lt/pkg/util/config/algorithms"
+	"github.com/quark_lt/pkg/util/algorithms"
+	"gopkg.in/yaml.v2"
 )
 
 type ScheduleConf struct {
@@ -29,4 +30,9 @@ func (s ScheduleConf) Validate() bool {
 	}
 
 	return validStatus
+}
+func ParseScheduleString(conf string) (ScheduleConf, error) {
+	cfg := ScheduleConf{}
+	err := yaml.Unmarshal([]byte(conf), &cfg)
+	return cfg, err
 }
