@@ -3,6 +3,7 @@ package node_exec
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 
@@ -19,6 +20,9 @@ func ExecPart(program string) *exec.Cmd {
 	logrus.Println("Running Worker command and waiting for it to finish...")
 
 	err = cmd.Run()
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 	fmt.Println(cmd.Process.Pid)
 
 	logrus.Warnf("Worker-[%s] exit with err <==%v", stderr.String(), err)

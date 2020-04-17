@@ -3,48 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/node.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/build/node.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/build/data.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/quark-apiserver" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark-apiserver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/quark-node" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark-node" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/quark_worker" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark_worker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/app/livechecker.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/app/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/app/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/quark-node.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-node/quark-node.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/cmd/agents/agent.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/cmd/quark-node/node/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-node/app/node.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/cmd/quark-node/node/node_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-node/app/node_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/cmd/quark-node/quark_node.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/cmd/std/executor.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/conf.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/config.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/quark_node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-node/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/.idea/quark_worker.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-worker/quark-worker.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/build/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/build/quark_worker" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/cmd/app_worker/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-worker/app/app-worker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/cmd/db_worker/db_worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-worker/app/db_worker/db_worker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/cmd/quark_worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-worker/quark_worker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/examples/cfg.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/examples/config.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/pkg/algorithm/algo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/pkg/algorithm/duration.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/pkg/quark_logger/logger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/pkg/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-worker/app/worker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-worker/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/app_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/app_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/quark-apiserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/quark-apiserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/nodeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/nodeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/test_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/test_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/node-exec/executor.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/node-exec/executor.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/util/config/node_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/node_conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/config/server_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/server_conf.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,16 +35,16 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="SQLite - data.sqlite" type="feb32156:DbDataSourceImpl" />
+        <item name="data" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="SQLite - data.sqlite" type="feb32156:DbDataSourceImpl" />
+        <item name="data" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="SQLite - data.sqlite" type="feb32156:DbDataSourceImpl" />
+        <item name="data" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
@@ -113,7 +83,7 @@
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="go.vgo" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Background" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -170,7 +140,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:data" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:data" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@2aa8b44d" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -204,6 +184,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="560" y="205" key="#Intentions/0.0.1920.1080@0.0.1920.1080" timestamp="1582468155951" />
+    <state x="320" y="115" key="#Notifications" timestamp="1587121864565">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="115" key="#Notifications/0.0.1440.900@0.0.1440.900" timestamp="1587121864565" />
     <state x="420" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585914433547">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -241,9 +225,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="239" height="457" key="HiddenNamespacesPopup/0.0.1440.900@0.0.1440.900" timestamp="1585914612489" />
-    <state x="461" y="163" key="SettingsEditor" timestamp="1585772867413">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="346" y="141" key="SettingsEditor" timestamp="1587121873820">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="346" y="141" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1587121873820" />
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1585772867413" />
   </component>
   <component name="XDebuggerManager">

@@ -7,9 +7,9 @@ import (
 )
 
 type QuarkNodeConfig struct {
-	ServerConfig  ServerConfig `json:"server_config"`
-	DatabaseUrl   string       `json:"database_url"`
-	MasterHostUrl string
+	ServerConfig  ServerConfig `json:"server_config",yaml:"server_config"`
+	DatabaseUrl   string       `json:"database_url",yaml:"database_url"`
+	MasterHostUrl string       `json:"master_host_url",yaml:"master_host_url"`
 }
 
 func ParseQuarkNodeConfig(data string) *QuarkNodeConfig {

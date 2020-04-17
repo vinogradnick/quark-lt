@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	models "github.com/quark_lt/pkg/apiserver-models"
+	"github.com/quark_lt/pkg/util/config"
 	"log"
 	"net/http"
 )
@@ -31,7 +32,7 @@ func (app *AppController) CreateNode(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
-
+	log.Println(config.ParseToString(model))
 	if err := CreateRecord(app.db.Connection, &model); err != nil {
 		RespondError(w, http.StatusInternalServerError, err.Error())
 		return

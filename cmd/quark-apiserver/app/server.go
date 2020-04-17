@@ -57,8 +57,9 @@ func (api *ApiServer) StartServer() {
 
 	ctl.RunMigration()
 	r := mux.NewRouter()
+	fs := http.FileServer(http.Dir("client"))
 	//r.HandleFunc("/", homeHandler)
-	//r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./client/index.html"))))
+	r.Handle("/", fs)
 	apiRouter := r.PathPrefix("/api").Subrouter()
 	api.NodeApi(apiRouter, ctl)
 	api.TestApi(apiRouter, ctl)

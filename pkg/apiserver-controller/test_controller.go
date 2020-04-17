@@ -15,6 +15,10 @@ import (
 	models "github.com/quark_lt/pkg/apiserver-models"
 )
 
+type TestRunStruct struct {
+	ID int
+}
+
 /*
 
 
@@ -96,9 +100,11 @@ func (app *AppController) GetTestByCommit(w http.ResponseWriter, r *http.Request
 }
 func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
+
+	id := vars["id"]
 	test := models.TestModel{}
 	node := models.NodeModel{}
-	id := vars["id"]
+	log.Println(id)
 	err := app.db.Connection.Find(&test, "id =?", id).Error
 	err = app.db.Connection.First(&node).Error
 	err = app.RunInNode(node, test.ConfigFile)
@@ -116,7 +122,7 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 Run Test inside node
 */
 func (app *AppController) RunInNode(node models.NodeModel, cfg string) error {
-	_, err := http.Post(fmt.Sprintf("%s/start", node.Host), "application/json", bytes.NewBuffer([]byte(cfg)))
+	_, err := http.Post(fmt.Sprintf("http://%s/start", node.Host), "application/json", bytes.NewBuffer([]byte(cfg)))
 	if err != nil {
 		return err
 	} else {

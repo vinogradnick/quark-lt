@@ -12,6 +12,7 @@ import (
 
 func main() {
 	fileData := flag.String("f", "core.yaml", "a string")
+	flag.Parse()
 
 	apiServerConf := config.ApiServerConfig{}
 	configor.Load(&apiServerConf, *fileData)
