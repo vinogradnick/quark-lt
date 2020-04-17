@@ -1,0 +1,4 @@
+serverconfig:
+  host: "localhost"
+  port: 7777
+masterhosturl: "http://localhost:7700"

@@ -57,7 +57,8 @@ func (api *ApiServer) StartServer() {
 
 	ctl.RunMigration()
 	r := mux.NewRouter()
-
+	//r.HandleFunc("/", homeHandler)
+	//r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./client/index.html"))))
 	apiRouter := r.PathPrefix("/api").Subrouter()
 	api.NodeApi(apiRouter, ctl)
 	api.TestApi(apiRouter, ctl)
@@ -66,6 +67,7 @@ func (api *ApiServer) StartServer() {
 	log.Printf("Api server is active on http://%s:%d/api/", api.Conf.Host, api.Conf.Port)
 	log.Fatalln(http.ListenAndServe(fmt.Sprintf(":%d", api.Conf.Port), r))
 }
-func (api *ApiServer) MigrateModels() {
 
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "./client/index.html")
 }

@@ -2,26 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/node-exec/executor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docker/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docker/QuarkNode.Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/docker/docker-compose.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/api_server/server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/app_controller.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/cors.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/nodeController.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/test_controller.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/timeseries_controller.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/users_controller.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/db/db-worker.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/db/influx-worker.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/models/node.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/models/test_model.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/models/time_test_model.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/models/user.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/node.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/build/node.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/quark-apiserver" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark-apiserver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/quark-node" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark-node" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/quark_worker" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark_worker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/app/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/app/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark-node/.idea/modules.xml" beforeDir="false" />
@@ -57,36 +43,8 @@
       <change beforePath="$PROJECT_DIR$/cmd/quark-worker/pkg/quark_logger/logger.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark-worker/pkg/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-worker/app/worker.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/quark-worker/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark_lt/quark_lt.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/reports/generator.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/repositories/test_repository.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/Flex.http" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/Group_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/api.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/dep.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/fgl.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/goog_ltm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/report.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/report.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/tasks.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/two_axis.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/logger/logger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/metrics/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/metrics/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/const_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/algorithms/const_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/exp_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/algorithms/exp_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/linear_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/algorithms/linear_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/performance.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/algorithms/perform_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/step_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/algorithms/step_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/algorithms/stress.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/algorithms/stress_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/schedule_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/config/site_setup.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/sitesetup_conf.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/metric_server/server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/validator/validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/validator/validator.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.bat" beforeDir="false" afterPath="$PROJECT_DIR$/build/start.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/node.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/app_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/app_controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/config/node_conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/config/node_conf.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,22 +221,22 @@
       <screen x="0" y="26" width="1920" height="1054" />
     </state>
     <state x="747" y="313" key="FileChooserDialogImpl/0.26.1920.1054@0.26.1920.1054" timestamp="1584960100176" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1586853181498">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1586875684996">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586853181498" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1586853181497">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586875684996" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1586875684995">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586853181497" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1586853181496">
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586875684995" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1586875684994">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586853181496" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1586853181498">
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586875684994" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1586875684996">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586853181498" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586875684996" />
     <state width="239" height="457" key="HiddenNamespacesPopup" timestamp="1585914612489">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

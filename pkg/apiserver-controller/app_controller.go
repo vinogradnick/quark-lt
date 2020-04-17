@@ -5,6 +5,7 @@ import (
 	"github.com/quark_lt/pkg/apiserver-models"
 	"github.com/quark_lt/pkg/util/config"
 	"log"
+	"net/http"
 )
 
 type AppController struct {
@@ -25,6 +26,26 @@ func (app *AppController) RunMigration() {
 	app.db.Connection.AutoMigrate(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
 	app.db.Connection.CreateTable(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
 }
-func (app *AppController) RunNode() {
+func (app *AppController) LiveCheckNodes() {
+	var nodes []*apiserver_models.NodeModel
+	err := app.db.Connection.Find(&nodes).Error
+	if err != nil {
+		panic(err)
+	}
+	for _, node := range nodes {
+		res := CheckNode(node)
+		if !res {
+			err = app.db.Connection.Delete(node, "id=?", node.ID).Error
+			if err != nil {
+				panic(err)
+			}
+		}
+	}
+}
+func CheckNode(cfg *apiserver_models.NodeModel) bool {
 
+	if res, err := http.Get(cfg.Host + "/stats"); err == nil && res != nil && res.StatusCode == http.StatusOK {
+		return true
+	}
+	return false
 }
