@@ -2,6 +2,7 @@ package apiserver_controller
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	models "github.com/quark_lt/pkg/apiserver-models"
 	"github.com/quark_lt/pkg/util/config"
@@ -21,6 +22,26 @@ func (app *AppController) RemoveNode(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+}
+
+func (app *AppController) Connect(w http.ResponseWriter, r *http.Request) {
+
+	model := models.NodeModel{}
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+
+	if err := decoder.Decode(&model); err != nil {
+		RespondError(w, http.StatusInternalServerError, fmt.Sprintf("%v", err))
+	}
+
+	log.Println(config.ParseJsonToString(model))
+	if err := app.db.Connection.Where(models.NodeModel{Uuid: model.Uuid}).FirstOrCreate(&model).Error; err != nil {
+		RespondError(w, http.StatusInternalServerError, fmt.Sprintf("%v", err))
+		return
+	}
+
+	RespondJSON(w, http.StatusOK, "ok")
+	return
 }
 
 func (app *AppController) CreateNode(w http.ResponseWriter, r *http.Request) {
@@ -63,4 +84,11 @@ func (app *AppController) GetNode(w http.ResponseWriter, r *http.Request) {
 	}
 	RespondJSON(w, http.StatusOK, node)
 	return
+}
+
+func (app *AppController) DeleteNode(model *models.NodeModel) {
+	err := app.db.Connection.Delete(&model, "id =?", model.ID).Error
+	if err != nil {
+		return
+	}
 }

@@ -17,13 +17,15 @@ type SshAgent struct {
 }
 
 func NewSshAgent(conf *config.SshAgentConf) *SshAgent {
-	fmt.Println(fmt.Sprintf("%s:%d", conf.Host, conf.Port))
+	if !config.ValidateSshAgentConf(conf) {
+		return nil
+	}
 	sshConfig := &ssh.ClientConfig{
 		User:            conf.User,
 		Auth:            authParse(conf.AuthMethod),
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-	client, err := ssh.Dial("tcp", fmt.Sprintf("%s:%d",conf.Host,conf.Port), sshConfig)
+	client, err := ssh.Dial("tcp", fmt.Sprintf("%s:%d", conf.Host, conf.Port), sshConfig)
 	if err != nil {
 		fmt.Println("tcp err")
 
@@ -35,7 +37,7 @@ func NewSshAgent(conf *config.SshAgentConf) *SshAgent {
 }
 func (agent *SshAgent) ReadMetric() *metrics.SSHMetrics {
 	session, err := agent.Client.NewSession()
-	if err!=nil{
+	if err != nil {
 		return nil
 	}
 	defer session.Close()

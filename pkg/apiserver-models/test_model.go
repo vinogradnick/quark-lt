@@ -14,6 +14,7 @@ type TestModel struct {
 	Uuid       string
 	Name       string
 	Target     string
+	NodeId     uint
 	Algorithm  string
 	ConfigFile string
 	Status     string

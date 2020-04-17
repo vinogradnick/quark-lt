@@ -10,10 +10,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func ExecPart(program string) *exec.Cmd {
+func ExecPart(program string, args string) *exec.Cmd {
 	path, err := os.Getwd()
 
-	cmd := exec.Command(program)
+	cmd := exec.Command(program, args)
 	cmd.Dir = path
 	var stderr bytes.Buffer
 	cmd.Stderr = &stderr
@@ -21,7 +21,7 @@ func ExecPart(program string) *exec.Cmd {
 
 	err = cmd.Run()
 	if err != nil {
-		log.Fatalln(err.Error())
+		log.Println(err.Error())
 	}
 	fmt.Println(cmd.Process.Pid)
 

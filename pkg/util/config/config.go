@@ -20,6 +20,25 @@ type SshAgentConf struct {
 	AuthMethod *AuthMethod `json:"auth-method"`
 }
 
+func ValidateSshAgentConf(agentConf *SshAgentConf) bool {
+	if agentConf == nil {
+		return false
+	}
+	if len(agentConf.Host) == 0 {
+		return false
+	}
+	if len(agentConf.User) == 0 {
+		return false
+	}
+	if agentConf.Port == 0 {
+		return false
+	}
+	if agentConf.AuthMethod == nil {
+		return false
+	}
+	return true
+}
+
 //-----------------------------------------------------------------------------------------------------
 
 type AuthMethod struct {
@@ -48,4 +67,3 @@ const (
 )
 
 /// Node config
-

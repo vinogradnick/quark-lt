@@ -19,6 +19,7 @@ type ApiServer struct {
  */
 func (api *ApiServer) NodeApi(apiRouter *mux.Router, ctl *apiserver_controller.AppController) {
 	nodeRouter := apiRouter.PathPrefix("/node").Subrouter()
+	nodeRouter.HandleFunc("/connect", ctl.Connect).Methods("POST")
 	nodeRouter.HandleFunc("/create", ctl.CreateNode).Methods("POST")
 	nodeRouter.HandleFunc("/remove/{id:[0-9]+}", ctl.RemoveNode).Methods("POST")
 	nodeRouter.HandleFunc("/list", ctl.GetNodeList)
@@ -33,6 +34,7 @@ func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *apiserver_controller.A
 	testRouter := apiRouter.PathPrefix("/test").Subrouter()
 	testRouter.HandleFunc("/create", ctl.CreateTest).Methods("POST")
 	testRouter.HandleFunc("/run/{id:[0-9]+}", ctl.StartTest).Methods("POST")
+	testRouter.HandleFunc("/stop/{id:[0-9]+}", ctl.StopTest).Methods("POST")
 	testRouter.HandleFunc("/remove/{id:[0-9]+}", ctl.RemoveTest).Methods("POST")
 	testRouter.HandleFunc("/list", ctl.GetTestList).Methods("GET")
 	testRouter.HandleFunc("/get/{id:[0-9]+}", ctl.GetTest).Methods("GET")

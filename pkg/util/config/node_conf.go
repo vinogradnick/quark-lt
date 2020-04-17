@@ -7,6 +7,8 @@ import (
 )
 
 type QuarkNodeConfig struct {
+	Name          string
+	Uuid          string
 	ServerConfig  ServerConfig `json:"server_config",yaml:"server_config"`
 	DatabaseUrl   string       `json:"database_url",yaml:"database_url"`
 	MasterHostUrl string       `json:"master_host_url",yaml:"master_host_url"`

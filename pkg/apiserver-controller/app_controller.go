@@ -42,8 +42,9 @@ func (app *AppController) LiveCheckNodes() {
 		}
 	}
 }
-func CheckNode(cfg *apiserver_models.NodeModel) bool {
 
+
+func CheckNode(cfg *apiserver_models.NodeModel) bool {
 	if res, err := http.Get(cfg.Host + "/stats"); err == nil && res != nil && res.StatusCode == http.StatusOK {
 		return true
 	}

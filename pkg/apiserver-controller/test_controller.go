@@ -106,8 +106,17 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	node := models.NodeModel{}
 	log.Println(id)
 	err := app.db.Connection.Find(&test, "id =?", id).Error
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
 	err = app.db.Connection.First(&node).Error
-	err = app.RunInNode(node, test.ConfigFile)
+	err = app.RunInNode(node, &test)
+	if err == nil {
+		test.Status = "active"
+		test.NodeId = node.ID
+		err = app.db.Connection.Save(&test).Error
+	}
 	if err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
@@ -117,12 +126,41 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	}{Status: "running"})
 	return
 }
+func (app *AppController) StopTest(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	id := vars["id"]
+	test := models.TestModel{}
+	node := models.NodeModel{}
+	log.Println(id)
+	err := app.db.Connection.Find(&test, "id =?", id).Error
+	err = app.db.Connection.Find(&node, "id =?", test.NodeId).Error
+	err = app.StopInNode(node, test.ConfigFile)
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	test.Status = "stopped"
+	err = app.db.Connection.Update(&node).Error
+	RespondJSON(w, http.StatusOK, struct {
+		Status string
+	}{Status: "stopped"})
+	return
+}
 
 /**
 Run Test inside node
 */
-func (app *AppController) RunInNode(node models.NodeModel, cfg string) error {
-	_, err := http.Post(fmt.Sprintf("http://%s/start", node.Host), "application/json", bytes.NewBuffer([]byte(cfg)))
+func (app *AppController) RunInNode(node models.NodeModel, cfg *models.TestModel) error {
+	_, err := http.Post(fmt.Sprintf("http://%s/start", node.Host), "application/json", bytes.NewBuffer([]byte(config.ParseJsonToString(cfg))))
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+func (app *AppController) StopInNode(node models.NodeModel, cfg string) error {
+	_, err := http.Post(fmt.Sprintf("http://%s/stop", node.Host), "application/json", bytes.NewBuffer([]byte(cfg)))
 	if err != nil {
 		return err
 	} else {
