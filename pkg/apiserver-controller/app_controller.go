@@ -24,7 +24,7 @@ func (app *AppController) RunMigration() {
 	app.db.Connect()
 	log.Println("RUN MIGRATION apiserver-models to database")
 	app.db.Connection.AutoMigrate(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
-	app.db.Connection.CreateTable(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
+	//app.db.Connection.CreateTable(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
 }
 func (app *AppController) LiveCheckNodes() {
 	var nodes []*apiserver_models.NodeModel
@@ -42,7 +42,6 @@ func (app *AppController) LiveCheckNodes() {
 		}
 	}
 }
-
 
 func CheckNode(cfg *apiserver_models.NodeModel) bool {
 	if res, err := http.Get(cfg.Host + "/stats"); err == nil && res != nil && res.StatusCode == http.StatusOK {

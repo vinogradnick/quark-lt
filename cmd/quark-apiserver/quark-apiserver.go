@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+
 	fileData := flag.String("f", "core.yaml", "a string")
 	flag.Parse()
 

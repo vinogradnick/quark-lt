@@ -2,12 +2,11 @@ package app
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"github.com/quark_lt/pkg/apiserver-controller"
 	"github.com/quark_lt/pkg/util/config"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 type ApiServer struct {
@@ -20,10 +19,10 @@ type ApiServer struct {
 func (api *ApiServer) NodeApi(apiRouter *mux.Router, ctl *apiserver_controller.AppController) {
 	nodeRouter := apiRouter.PathPrefix("/node").Subrouter()
 	nodeRouter.HandleFunc("/connect", ctl.Connect).Methods("POST")
-	nodeRouter.HandleFunc("/create", ctl.CreateNode).Methods("POST")
-	nodeRouter.HandleFunc("/remove/{id:[0-9]+}", ctl.RemoveNode).Methods("POST")
-	nodeRouter.HandleFunc("/list", ctl.GetNodeList)
-	nodeRouter.HandleFunc("/get/{id:[0-9]+}", ctl.GetNode)
+	nodeRouter.HandleFunc("/create", apiserver_controller.JwtDefender(ctl.CreateNode)).Methods("POST")
+	nodeRouter.HandleFunc("/remove/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.RemoveNode)).Methods("POST")
+	nodeRouter.HandleFunc("/list", apiserver_controller.JwtDefender(ctl.GetNodeList))
+	nodeRouter.HandleFunc("/get/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetNode))
 
 }
 
@@ -32,13 +31,13 @@ func (api *ApiServer) NodeApi(apiRouter *mux.Router, ctl *apiserver_controller.A
  */
 func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *apiserver_controller.AppController) {
 	testRouter := apiRouter.PathPrefix("/test").Subrouter()
-	testRouter.HandleFunc("/create", ctl.CreateTest).Methods("POST")
-	testRouter.HandleFunc("/run/{id:[0-9]+}", ctl.StartTest).Methods("POST")
-	testRouter.HandleFunc("/stop/{id:[0-9]+}", ctl.StopTest).Methods("POST")
-	testRouter.HandleFunc("/remove/{id:[0-9]+}", ctl.RemoveTest).Methods("POST")
-	testRouter.HandleFunc("/list", ctl.GetTestList).Methods("GET")
-	testRouter.HandleFunc("/get/{id:[0-9]+}", ctl.GetTest).Methods("GET")
-	testRouter.HandleFunc("/series/{id:[0-9]+}", ctl.GetTimeSeriesData).Methods("GET")
+	testRouter.HandleFunc("/create", apiserver_controller.JwtDefender(ctl.CreateTest)).Methods("POST")
+	testRouter.HandleFunc("/run/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.StartTest)).Methods("POST")
+	testRouter.HandleFunc("/stop/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.StopTest)).Methods("POST")
+	testRouter.HandleFunc("/remove/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.RemoveTest)).Methods("POST")
+	testRouter.HandleFunc("/list", apiserver_controller.JwtDefender(ctl.GetTestList)).Methods("GET")
+	testRouter.HandleFunc("/get/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetTest)).Methods("GET")
+	testRouter.HandleFunc("/series/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetTimeSeriesData)).Methods("GET")
 }
 
 /**
@@ -48,13 +47,14 @@ func (api *ApiServer) UsersApi(apiRouter *mux.Router, ctl *apiserver_controller.
 	userRouter := apiRouter.PathPrefix("/user").Subrouter()
 	userRouter.HandleFunc("/create", ctl.CreateUser).Methods("POST")
 	userRouter.HandleFunc("/remove", ctl.RemoveUser).Methods("POST")
-	userRouter.HandleFunc("/authorize", ctl.Authorize).Methods("POST")
+	userRouter.HandleFunc("/auth", ctl.GenerateToken).Methods("POST")
 }
 func NewApiServer(conf *config.ApiServerConfig) *ApiServer {
 	return &ApiServer{Conf: conf}
 }
 
 func (api *ApiServer) StartServer() {
+
 	ctl := apiserver_controller.NewAppController(api.Conf)
 
 	ctl.RunMigration()

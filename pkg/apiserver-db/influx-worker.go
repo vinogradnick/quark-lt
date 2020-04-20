@@ -17,7 +17,8 @@ func NewInfluxDbWorker(url string) *InfluxDbWorker {
 		Addr: url,
 	})
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		return nil
 	}
 
 	return &InfluxDbWorker{InfluxConnection: c, DatabaseName: "quarklt"}
@@ -33,12 +34,13 @@ func (influxWorker *InfluxDbWorker) QueryDb(cmd string) interface{} {
 	response, err := influxWorker.InfluxConnection.Query(q)
 
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
+		return nil
 	}
 
-	return ConvertSeriesMap(response, 1)
+	return ConvertSeriesMap(response)
 }
-func ConvertSeriesMap(data *influxClient.Response, metricsId int) interface{} {
+func ConvertSeriesMap(data *influxClient.Response) interface{} {
 	//var arr []map[string]interface{}
 	return data.Results
 

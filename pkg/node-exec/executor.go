@@ -12,7 +12,7 @@ import (
 
 func ExecPart(program string, args string) *exec.Cmd {
 	path, err := os.Getwd()
-
+	fmt.Println(path)
 	cmd := exec.Command(program, args)
 	cmd.Dir = path
 	var stderr bytes.Buffer
