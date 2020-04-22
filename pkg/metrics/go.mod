@@ -1,3 +1,3 @@
-module github.com/quark_lt/pkg/metrics
+module github.com/vinogradnick/quark-lt/pkg/metrics
 
 go 1.14
