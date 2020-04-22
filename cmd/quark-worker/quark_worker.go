@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"github.com/quark_lt/cmd/quark-worker/app"
-	"github.com/quark_lt/pkg/util/quark_logger"
+	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app"
+	"github.com/vinogradnick/quark-lt/pkg/util/quark_logger"
 	"log"
 	"os"
 	"sync"
 
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
 var (

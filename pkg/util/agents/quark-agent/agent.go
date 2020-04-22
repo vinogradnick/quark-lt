@@ -2,10 +2,9 @@ package quark_agent
 
 import (
 	"fmt"
-	"github.com/quark_lt/pkg/metrics"
-	"github.com/quark_lt/pkg/util/config"
 	"github.com/valyala/gorpc"
-	"gitlab.com/quark-node/cmd/std"
+	"github.com/vinogradnick/quark-lt/pkg/metrics"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 	"log"
 )
 

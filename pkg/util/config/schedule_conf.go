@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/quark_lt/pkg/util/algorithms"
+	"github.com/vinogradnick/quark-lt/pkg/util/algorithms"
 	"gopkg.in/yaml.v2"
 )
 

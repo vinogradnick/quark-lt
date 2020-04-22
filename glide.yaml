@@ -1,31 +1,45 @@
-package: github.com/quark_lt
+package: github.com/vinogradnick/quark-lt
 import:
 - package: github.com/SkyrisBactera/pkill
 - package: github.com/bradhe/stopwatch
+- package: github.com/dgrijalva/jwt-go
 - package: github.com/gorilla/mux
-  version: ^1.7.4
 - package: github.com/influxdata/influxdb1-client
   subpackages:
   - v2
 - package: github.com/jinzhu/configor
-  version: ^1.1.1
 - package: github.com/jinzhu/gorm
-  version: ^1.9.12
   subpackages:
   - dialects/sqlite
+- package: github.com/quark_lt/cmd
+  subpackages:
+  - quark-apiserver/app
+  - quark-node/app
+  - quark-worker/app
+  - quark-worker/app/db_worker
+- package: github.com/quark_lt/pkg
+  subpackages:
+  - apiserver-controller
+  - apiserver-db
+  - apiserver-jobs
+  - apiserver-models
+  - metrics
+  - node-exec
+  - util/agents/ssh_agent
+  - util/algorithm
+  - util/algorithms
+  - util/config
+  - util/quark_logger
+  - util/uuid
+  - util/validator
 - package: github.com/satori/go.uuid
-  version: ^1.2.0
 - package: github.com/sirupsen/logrus
-  version: ^1.5.0
 - package: github.com/valyala/gorpc
 - package: gitlab.com/quark-node/cmd
   subpackages:
   - std
 - package: go.uber.org/zap
-  version: ^1.14.1
 - package: golang.org/x/crypto
   subpackages:
   - ssh
 - package: gopkg.in/yaml.v2
-  version: ^2.2.8
-- package: src/github.com/jung-kurt/gofpdf

@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"github.com/jinzhu/configor"
-	"github.com/quark_lt/cmd/quark-node/app"
-	"github.com/quark_lt/pkg/util/config"
-	"github.com/quark_lt/pkg/util/quark_logger"
+	"github.com/vinogradnick/quark-lt/cmd/quark-node/app"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/quark_logger"
 )
 
 func loadConfig() *config.QuarkNodeConfig {

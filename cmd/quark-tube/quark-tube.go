@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	node_exec "github.com/quark_lt/pkg/node-exec"
+	node_exec "github.com/vinogradnick/quark-lt/pkg/node-exec"
 	"os"
 )
 

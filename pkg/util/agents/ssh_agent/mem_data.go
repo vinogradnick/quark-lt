@@ -2,7 +2,7 @@ package ssh_agent
 
 import (
 	"bytes"
-	"github.com/quark_lt/pkg/metrics"
+	"github.com/vinogradnick/quark-lt/pkg/metrics"
 	"golang.org/x/crypto/ssh"
 	"strconv"
 	"strings"

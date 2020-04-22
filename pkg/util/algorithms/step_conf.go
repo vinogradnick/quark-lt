@@ -1,7 +1,8 @@
 package algorithms
 
 import (
-	"github.com/quark_lt/pkg/util/validator"
+	"github.com/vinogradnick/quark-lt/pkg/util/validator"
+
 	"go.uber.org/zap"
 )
 

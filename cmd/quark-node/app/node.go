@@ -3,15 +3,15 @@ package app
 import (
 	"fmt"
 	"github.com/SkyrisBactera/pkill"
-	apiserver_models "github.com/quark_lt/pkg/apiserver-models"
-	node_exec "github.com/quark_lt/pkg/node-exec"
+	apiserver_models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
+	node_exec "github.com/vinogradnick/quark-lt/pkg/node-exec"
 	"net/http"
 	"os/exec"
 	"runtime"
 	"sync"
 
-	"github.com/quark_lt/pkg/util/config"
 	"github.com/sirupsen/logrus"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
 type QuarkNode struct {

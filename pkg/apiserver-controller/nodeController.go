@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	models "github.com/quark_lt/pkg/apiserver-models"
-	"github.com/quark_lt/pkg/util/config"
+	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 	"log"
 	"net/http"
 )

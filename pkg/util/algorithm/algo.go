@@ -2,9 +2,9 @@ package algorithm
 
 import (
 	"fmt"
-	"github.com/quark_lt/pkg/util/algorithms"
-	quarkConfig "github.com/quark_lt/pkg/util/config"
-	"github.com/quark_lt/pkg/util/validator"
+	"github.com/vinogradnick/quark-lt/pkg/util/algorithms"
+	quarkConfig "github.com/vinogradnick/quark-lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/validator"
 	"math"
 	"runtime"
 	"time"

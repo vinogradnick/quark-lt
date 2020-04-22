@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/jinzhu/configor"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"github.com/quark_lt/cmd/quark-apiserver/app"
-	"github.com/quark_lt/pkg/util/config"
-	"github.com/quark_lt/pkg/util/quark_logger"
+	"github.com/vinogradnick/quark-lt/cmd/quark-apiserver/app"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/quark_logger"
 )
 
 func main() {

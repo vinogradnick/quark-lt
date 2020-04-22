@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/bradhe/stopwatch"
-	"github.com/quark_lt/pkg/metrics"
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/metrics"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
 type RequestTypeStruct struct {

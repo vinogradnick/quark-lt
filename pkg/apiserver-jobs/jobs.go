@@ -2,7 +2,7 @@ package apiserver_jobs
 
 import (
 	"github.com/jinzhu/gorm"
-	models "github.com/quark_lt/pkg/apiserver-models"
+	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
 	"log"
 )
 

@@ -3,16 +3,16 @@ package app
 import (
 	"context"
 	"fmt"
-	"github.com/quark_lt/cmd/quark-worker/app/db_worker"
-	"github.com/quark_lt/pkg/util/algorithm"
+	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app/db_worker"
+	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
 
 	"log"
 	"os"
 	"sync"
 
-	"github.com/quark_lt/pkg/metrics"
-	"github.com/quark_lt/pkg/util/agents/ssh_agent"
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/metrics"
+	"github.com/vinogradnick/quark-lt/pkg/util/agents/ssh_agent"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
 type AppWorker struct {

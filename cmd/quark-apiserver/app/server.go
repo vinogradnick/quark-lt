@@ -3,8 +3,8 @@ package app
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/quark_lt/pkg/apiserver-controller"
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/apiserver-controller"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 	"log"
 	"net/http"
 )

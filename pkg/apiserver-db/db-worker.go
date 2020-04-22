@@ -3,7 +3,7 @@ package apiserver_db
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
 type DbWorker struct {

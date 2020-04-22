@@ -1,10 +1,10 @@
 package apiserver_controller
 
 import (
-	"github.com/quark_lt/pkg/apiserver-db"
-	apiserver_jobs "github.com/quark_lt/pkg/apiserver-jobs"
-	"github.com/quark_lt/pkg/apiserver-models"
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/apiserver-db"
+	apiserver_jobs "github.com/vinogradnick/quark-lt/pkg/apiserver-jobs"
+	"github.com/vinogradnick/quark-lt/pkg/apiserver-models"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 	"log"
 	"net/http"
 )

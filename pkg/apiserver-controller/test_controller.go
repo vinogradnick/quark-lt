@@ -8,11 +8,11 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/quark_lt/pkg/util/config"
-	"github.com/quark_lt/pkg/util/uuid"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/uuid"
 
 	"github.com/jinzhu/gorm"
-	models "github.com/quark_lt/pkg/apiserver-models"
+	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
 )
 
 type TestRunStruct struct {
