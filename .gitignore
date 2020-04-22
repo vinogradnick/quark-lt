@@ -18,3 +18,4 @@ vendor/
 build/unix/*
 build/windows/*
 db/*
+.vscode/

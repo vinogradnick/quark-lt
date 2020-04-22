@@ -3,8 +3,8 @@ package ssh_agent
 import (
 	"bytes"
 	"fmt"
-	"github.com/quark_lt/pkg/metrics"
-	"github.com/quark_lt/pkg/util/config"
+	"github.com/vinogradnick/quark-l/pkg/metrics"
+	"github.com/vinogradnick/quark-l/pkg/util/config"
 	"golang.org/x/crypto/ssh"
 	"io"
 	"log"

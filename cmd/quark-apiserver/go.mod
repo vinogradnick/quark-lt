@@ -1,4 +1,4 @@
-module github.com/quark_lt/cmd/quark-apiserver
+module github.com/vinogradnick/quark-lt/cmd/quark-apiserver
 
 go 1.14
 

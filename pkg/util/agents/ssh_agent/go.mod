@@ -1,3 +1,3 @@
-module github.com/quark_lt/pkg/util/agents/ssh_agent
+module github.com/vinogradnick/quark-lt/pkg/util/agents/ssh_agent
 
 go 1.14

@@ -1,3 +1,3 @@
-module github.com/quark_lt/pkg/util/config
+module github.com/vinogradnick/quark-lt/pkg/util/config
 
 go 1.14
