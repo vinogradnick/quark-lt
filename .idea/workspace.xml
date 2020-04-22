@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c981291b-8ef4-4475-b248-88d8ce77e96c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/build/data.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/quark-apiserver" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark-apiserver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/quark-node" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark-node" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/quark_worker" beforeDir="false" afterPath="$PROJECT_DIR$/build/quark_worker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/app/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/app/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/quark-apiserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/quark-apiserver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/quark-tube/quark-tube.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-tube/quark-tube.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/app_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/app_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/timeseries_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/timeseries_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/apiserver-controller/users_controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-controller/users_controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/apiserver-db/influx-worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver-db/influx-worker.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/node-exec/executor.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/node-exec/executor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/quark-apiserver/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/quark-apiserver/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/uuid/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/util/uuid/uuid_generator.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,23 +23,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -141,17 +115,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:data" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:data" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@32ccb4e9" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -194,10 +158,10 @@
     </state>
     <state x="420" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1585914433547" />
     <state x="560" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1582378331238" />
-    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587382746747">
+    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587593104823">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1587382746747" />
+    <state x="433" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1587593104823" />
     <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1581533761298">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

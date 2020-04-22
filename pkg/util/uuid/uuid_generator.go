@@ -1,9 +1,9 @@
 package uuid
 
-import uuid "github.com/satori/go.uuid"
+import flex "github.com/satori/go.uuid"
 
 func GenerateUuid() string {
-	u2, err := uuid.NewV4()
+	u2, err := flex.NewV4()
 	if err != nil {
 		panic(err)
 	}
