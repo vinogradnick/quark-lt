@@ -60,6 +60,15 @@ func (app *AppController) CreateTest(w http.ResponseWriter, r *http.Request) {
 		RespondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
+	newModel := models.TestModel{}
+	if err := app.db.Connection.Find(&newModel, "uuid=?", tModel.Uuid).Error; err != nil {
+		RespondError(w, http.StatusInternalServerError, err.Error())
+		return
+	} else {
+		RespondJSON(w, http.StatusOK, &newModel)
+		return
+	}
+
 }
 
 func (app *AppController) GetTestList(w http.ResponseWriter, r *http.Request) {
