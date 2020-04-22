@@ -1,0 +1,21 @@
+package: github.com/vinogradnick/quark-lt
+import:
+- package: github.com/SkyrisBactera/pkill
+- package: github.com/bradhe/stopwatch
+- package: github.com/dgrijalva/jwt-go
+- package: github.com/gorilla/mux
+- package: github.com/influxdata/influxdb1-client
+  subpackages:
+  - v2
+- package: github.com/jinzhu/configor
+- package: github.com/jinzhu/gorm
+  subpackages:
+  - dialects/sqlite
+- package: github.com/satori/go.uuid
+- package: github.com/sirupsen/logrus
+- package: github.com/valyala/gorpc
+- package: go.uber.org/zap
+- package: golang.org/x/crypto
+  subpackages:
+  - ssh
+- package: gopkg.in/yaml.v2
