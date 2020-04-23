@@ -25,7 +25,15 @@ func (app *AppController) RunMigration() {
 	app.db.Connect()
 	log.Println("RUN MIGRATION apiserver-models to database")
 	app.db.Connection.AutoMigrate(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
+	app.CreateAdmin()
 	//app.db.Connection.CreateTable(&apiserver_models.TestModel{}, &apiserver_models.NodeModel{}, &apiserver_models.User{})
+}
+func (app *AppController) CreateAdmin() {
+
+	model := apiserver_models.User{Username: "admin", Password: "admin"}
+	if err := app.db.Connection.FirstOrCreate(&model, "username=?", model.Username); err != nil {
+		log.Println("non create admin")
+	}
 }
 
 func (app *AppController) StopTests() {

@@ -29,8 +29,9 @@ func (node *QuarkNode) StartHandler(w http.ResponseWriter, r *http.Request) {
 	return
 }
 func (node *QuarkNode) WorkerConfig(w http.ResponseWriter, r *http.Request) {
-	log.Println(config.ParseJsonToString(node.Config))
-	RespondJSON(w, http.StatusOK, node.Config.ConfigFile)
+	cfg := config.ParseMainQuarkConfig(node.Config.ConfigFile)
+	workerCfg := config.WorkerConfig{Config: cfg, DatabaseUrl: node.NodeConfig.DatabaseUrl}
+	RespondJSON(w, http.StatusOK, workerCfg)
 	return
 }
 func (node *QuarkNode) StopHandler(w http.ResponseWriter, r *http.Request) {

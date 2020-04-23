@@ -28,3 +28,12 @@ func ParseWorkerConfigFile(arr []byte) *WorkerConfig {
 	}
 	return &cfg
 }
+
+func ParseWorkerConfigFileYaml(arr []byte) *WorkerConfig {
+	cfg := WorkerConfig{}
+	err := yaml.Unmarshal(arr, &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
+}

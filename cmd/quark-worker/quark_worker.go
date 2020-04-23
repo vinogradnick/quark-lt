@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app"
 	"github.com/vinogradnick/quark-lt/pkg/util/quark_logger"
-	"log"
 	"os"
 	"sync"
 
@@ -18,11 +17,12 @@ var (
 /*
 Parse File or Load from URL
 */
-func ParseDatafile(args string) *config.QuarkLTConfig {
+func ParseDatafile(args string) *config.WorkerConfig {
 	if len(args) > 0 {
-		return config.ParseMainConfig(config.ReadFile(args))
+		data := config.ReadFile(args)
+		return config.ParseWorkerConfigFileYaml(data)
 	}
-	return config.DownloadFile("http://localhost:7777/")
+	return config.ParseWorkerConfigFile(config.DownloadFile("http://localhost:7777"))
 
 }
 
@@ -30,13 +30,7 @@ func ParseDatafile(args string) *config.QuarkLTConfig {
 func main() {
 	args := os.Args[1:]
 	quark_logger.SetupLogger(quark_logger.STDOUT_LOGGER)
-
-	//	fileData := flag.String("f", "", "a string")
-	//	databaseUrl := flag.String("db", "http://localhost:8086", "database url to write metrics")
-	//flag.Parse()
-
-	cfg := ParseDatafile(args[1])
-	log.Println(config.ParseJsonToString(cfg))
-	instance := app.NewAppWorker(&sync.WaitGroup{}, cfg, args[0])
+	wConfig := ParseDatafile(args[0])
+	instance := app.NewAppWorker(&sync.WaitGroup{}, wConfig.Config, wConfig.DatabaseUrl)
 	instance.Start()
 }

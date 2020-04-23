@@ -19,6 +19,14 @@ func ParseMainConfig(arr []byte) *QuarkLTConfig {
 	}
 	return &cfg
 }
+func ParseMainQuarkConfig(data string) *QuarkLTConfig {
+	cfg := QuarkLTConfig{}
+	err := json.Unmarshal([]byte(data), &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
+}
 
 ///------------------------------------------------------
 
@@ -66,7 +74,7 @@ func ParseJsonToString(v interface{}) string {
 	return string(data)
 }
 
-func DownloadFile(url string) *QuarkLTConfig {
+func DownloadFile(url string) []byte {
 
 	// Get the data
 	resp, err := http.Get(url)
@@ -78,7 +86,7 @@ func DownloadFile(url string) *QuarkLTConfig {
 	if err != nil {
 		panic(err)
 	}
-	return ParseMainConfig(body)
+	return body
 
 }
 

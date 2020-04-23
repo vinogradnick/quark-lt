@@ -1,0 +1,25 @@
+---
+config:
+  name: quark.test
+  server-host: localhost
+  site-setup:
+    schedules:
+      - routing:
+          - url: http://localhost:1400
+            context: ''
+            statusCode: 200
+            requestType: GET
+        step-load:
+          start: 1
+          end: 10
+          duration: 9ms
+          step: 1
+    helpers:
+      ssh-agent:
+        host: ''
+        user: ''
+        port: 0
+        auth-method:
+    auto-stop:
+server_config:
+database_url: http:localhost:8086

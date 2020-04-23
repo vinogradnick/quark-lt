@@ -41,12 +41,13 @@ func (node *QuarkNode) Start() {
 	logrus.Println("Launch Quark Worker")
 	switch runtime.GOOS {
 	case "windows":
-		go node_exec.ExecPart(".\\quark_worker ", fmt.Sprintf(`"%s"`, node.NodeConfig.DatabaseUrl))
+		go node_exec.ExecPart(".\\quark_worker.exe ", fmt.Sprintf(`"%s"`, node.NodeConfig.ServerConfig.GetString()))
 		break
 	default:
-		go node_exec.ExecPart("./quark_worker ", fmt.Sprintf(`"%s"`, node.NodeConfig.DatabaseUrl))
+		go node_exec.ExecPart("./quark_worker ", fmt.Sprintf(`"%s"`, node.NodeConfig.ServerConfig.GetString()))
+		return
 	}
-
+	return
 }
 func (node *QuarkNode) Stop() {
 	go func() {

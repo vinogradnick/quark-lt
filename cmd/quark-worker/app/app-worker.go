@@ -7,7 +7,6 @@ import (
 	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
 
 	"log"
-	"os"
 	"sync"
 
 	"github.com/vinogradnick/quark-lt/pkg/metrics"
@@ -28,10 +27,10 @@ type AppWorker struct {
 func (aw *AppWorker) Start() {
 	aw.wg.Add(2)
 
-	go aw.StartExporter()
+	//go aw.StartExporter()
 	aw.RunSchedule()
 	log.Println("QuarkWorker Successfully Completed ")
-	os.Exit(9)
+
 	aw.wg.Wait()
 
 }
