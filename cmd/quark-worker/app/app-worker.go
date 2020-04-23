@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app/db_worker"
-	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
-	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
 	"log"
 	"net/http"
 	"os"
 	"sync"
+
+	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app/db_worker"
+	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
+	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
 
 	"github.com/vinogradnick/quark-lt/pkg/metrics"
 	"github.com/vinogradnick/quark-lt/pkg/util/agents/ssh_agent"
