@@ -6,8 +6,6 @@ import (
 	apiserver_models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
 	node_exec "github.com/vinogradnick/quark-lt/pkg/node-exec"
 	"net/http"
-	"os/exec"
-	"runtime"
 	"sync"
 
 	"github.com/sirupsen/logrus"
@@ -18,16 +16,16 @@ type QuarkNode struct {
 	sync.Mutex
 	Wg         *sync.WaitGroup
 	NodeConfig *config.QuarkNodeConfig
-	cmds       []*exec.Cmd
-	Config     *apiserver_models.TestModel
-	NodeModel  *apiserver_models.NodeModel
+
+	Config    *apiserver_models.TestModel
+	NodeModel *apiserver_models.NodeModel
 }
 
 func NewQuarkNode(conf *config.QuarkNodeConfig) *QuarkNode {
 	return &QuarkNode{
 		Wg:         &sync.WaitGroup{},
 		NodeConfig: conf,
-		cmds:       []*exec.Cmd{},
+
 		NodeModel: &apiserver_models.NodeModel{
 			Name:        conf.Name,
 			Host:        conf.ServerConfig.GetString(),
@@ -39,15 +37,14 @@ func NewQuarkNode(conf *config.QuarkNodeConfig) *QuarkNode {
 
 func (node *QuarkNode) Start() {
 	logrus.Println("Launch Quark Worker")
-	switch runtime.GOOS {
-	case "windows":
-		go node_exec.ExecPart(".\\quark_worker.exe ", fmt.Sprintf(`"%s"`, node.NodeConfig.ServerConfig.GetString()))
-		break
-	default:
-		go node_exec.ExecPart("./quark_worker ", fmt.Sprintf(`"%s"`, node.NodeConfig.ServerConfig.GetString()))
-		return
-	}
-	return
+	go func() {
+		node_exec.ExecPart("./quark_worker", "w")
+	}()
+
+	//default:
+	//	go node_exec.ExecPart("./quark_worker ", "w")
+	//	return
+
 }
 func (node *QuarkNode) Stop() {
 	go func() {

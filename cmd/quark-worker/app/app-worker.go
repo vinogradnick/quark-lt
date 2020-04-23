@@ -1,12 +1,15 @@
 package app
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app/db_worker"
+	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
 	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
-
 	"log"
+	"net/http"
+	"os"
 	"sync"
 
 	"github.com/vinogradnick/quark-lt/pkg/metrics"
@@ -15,22 +18,25 @@ import (
 )
 
 type AppWorker struct {
-	wg          *sync.WaitGroup
-	context     context.Context
-	cancel      context.CancelFunc
-	quarkWorker *QuarkWorker
-	sshAgent    *ssh_agent.SshAgent
-	dbWorker    *db_worker.DbWorker
-	cfg         *config.QuarkLTConfig
+	wg               *sync.WaitGroup
+	context          context.Context
+	cancel           context.CancelFunc
+	quarkWorker      *QuarkWorker
+	sshAgent         *ssh_agent.SshAgent
+	dbWorker         *db_worker.DbWorker
+	cfg              *config.QuarkLTConfig
+	workerStatConfig *config.WorkerConfig
 }
 
 func (aw *AppWorker) Start() {
-	aw.wg.Add(2)
+	aw.wg.Add(1)
 
-	//go aw.StartExporter()
+	go aw.StartExporter()
+	aw.wg.Add(1)
 	aw.RunSchedule()
 	log.Println("QuarkWorker Successfully Completed ")
-
+	aw.SendStop()
+	os.Exit(9)
 	aw.wg.Wait()
 
 }
@@ -86,7 +92,7 @@ func (aw *AppWorker) StartExporter() {
 	}
 }
 func (aw *AppWorker) RunSchedule() {
-	fmt.Println(aw.cfg.SiteSetup)
+	fmt.Println(config.ParseToString(aw.cfg))
 	for _, sh := range aw.cfg.SiteSetup.Schedules {
 
 		if sh != nil {
@@ -108,21 +114,35 @@ func (aw *AppWorker) Stop() {
 	aw.quarkWorker.StatusChan <- true
 	aw.wg.Done()
 }
+func (aw *AppWorker) SendStop() {
+	if aw.workerStatConfig.ServerConfig != nil {
+		model := config.ParseJsonToString(models.TestModel{Name: aw.cfg.Name})
+		res, err := http.Post("http://"+aw.workerStatConfig.ServerConfig.GetString()+"/localstop", "application/json", bytes.NewBufferString(model))
+		if err != nil {
+			log.Println(err)
+		}
+		if res.StatusCode == 200 {
+			log.Println("success")
+		}
+	}
+
+}
 
 /*
 Создание инициализации агента и рабочего системы из конфигурации
 */
-func NewAppWorker(wg *sync.WaitGroup, cfg *config.QuarkLTConfig, databaseUrl string) *AppWorker {
+func NewAppWorker(wg *sync.WaitGroup, cfg *config.QuarkLTConfig, cfgWorker *config.WorkerConfig) *AppWorker {
 	log.Println("create")
 	var agent *config.SshAgentConf = nil
 	if cfg.SiteSetup.Helpers != nil {
 		agent = cfg.SiteSetup.Helpers.SshAgent
 	}
 	return &AppWorker{
-		wg:          wg,
-		sshAgent:    ssh_agent.NewSshAgent(agent),
-		quarkWorker: NewQuarkWorker(),
-		dbWorker:    db_worker.NewDbWorker(databaseUrl, cfg.ServerHost),
-		cfg:         cfg,
+		wg:               wg,
+		sshAgent:         ssh_agent.NewSshAgent(agent),
+		quarkWorker:      NewQuarkWorker(),
+		workerStatConfig: cfgWorker,
+		dbWorker:         db_worker.NewDbWorker(cfgWorker.DatabaseUrl, cfg.ServerHost),
+		cfg:              cfg,
 	}
 }

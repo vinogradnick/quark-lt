@@ -135,22 +135,59 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	}{Status: "running"})
 	return
 }
+
+func (app *AppController) LocalStop(w http.ResponseWriter, r *http.Request) {
+	test := models.TestModel{}
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&test); err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	defer r.Body.Close()
+	t := models.TestModel{}
+	fmt.Println(config.ParseToString(test))
+
+	err := app.db.Connection.Find(&t, "name =?", test.Name).Error
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	fmt.Println(config.ParseToString(t))
+	t.Status = "stopped"
+	if err := app.db.Connection.Save(&t).Error; err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	RespondJSON(w, http.StatusOK, struct {
+		Status string
+	}{Status: "stopped"})
+	return
+}
+
 func (app *AppController) StopTest(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	id := vars["id"]
 	test := models.TestModel{}
 	node := models.NodeModel{}
-	log.Println(id)
-	err := app.db.Connection.Find(&test, "id =?", id).Error
-	err = app.db.Connection.Find(&node, "id =?", test.NodeId).Error
-	err = app.StopInNode(node, test.ConfigFile)
-	if err != nil {
+
+	if err := app.db.Connection.Find(&test, "id =?", id).Error; err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
 	}
+
+	if err := app.db.Connection.Find(&node, "id =?", test.NodeId).Error; err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	_ = app.StopInNode(node, test.ConfigFile)
+
 	test.Status = "stopped"
-	err = app.db.Connection.Update(&node).Error
+	if err := app.db.Connection.Save(&test).Error; err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
 	RespondJSON(w, http.StatusOK, struct {
 		Status string
 	}{Status: "stopped"})

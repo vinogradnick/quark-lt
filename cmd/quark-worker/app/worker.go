@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -39,7 +40,7 @@ func NewQuarkWorker() *QuarkWorker {
 }
 
 func (w *QuarkWorker) DoRequest(road *config.RoadMap) *metrics.Metrics {
-
+	fmt.Println(road.Url)
 	watch := stopwatch.Start()
 	statusCode, err := http.Get(road.Url)
 	watch.Stop()

@@ -1,0 +1,51 @@
+{
+  "config": {
+    "name": "host",
+    "server-host": "hosting",
+    "site-setup": {
+      "schedules": [
+        {
+          "routing": [
+            {
+              "url": "http://localhost:1400",
+              "context": "",
+              "statusCode": 200,
+              "requestType": "GET"
+            },
+            {
+              "url": "http://localhost:3000",
+              "context": "",
+              "statusCode": 200,
+              "requestType": "GET"
+            }
+          ],
+          "step-load": {
+            "start": 1,
+            "end": 10,
+            "duration": "1m",
+            "step": 1
+          },
+          "const-load": null,
+          "line-load": null,
+          "exp-load": null,
+          "Stress": null,
+          "Performance": null
+        }
+      ],
+      "helpers": {
+        "ssh-agent": {
+          "host": "",
+          "user": "",
+          "port": 0,
+          "auth-method": null
+        }
+      },
+      "auto-stop": null
+    }
+  },
+  "server_config": {
+    "host": "localhost",
+    "port": 7777
+  },
+  "database_url": "http:localhost:8086"
+}

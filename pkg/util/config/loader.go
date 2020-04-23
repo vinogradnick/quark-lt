@@ -74,20 +74,19 @@ func ParseJsonToString(v interface{}) string {
 	return string(data)
 }
 
-func DownloadFile(url string) []byte {
-
-	// Get the data
-	resp, err := http.Get(url)
+func GetJson(url string) *WorkerConfig {
+	r, err := http.Get(url)
 	if err != nil {
 		panic(err)
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
+	defer r.Body.Close()
+
+	decoder := json.NewDecoder(r.Body)
+	cfg := WorkerConfig{}
+	if err := decoder.Decode(&cfg); err != nil {
 		panic(err)
 	}
-	return body
-
+	return &cfg
 }
 
 func ReadFile(path string) []byte {

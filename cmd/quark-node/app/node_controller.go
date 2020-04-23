@@ -22,15 +22,19 @@ func (node *QuarkNode) StartHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println(config.ParseJsonToString(conf))
 	logrus.Infoln("QuarkNode success to start QuarkltConfig")
+	if node.Config == nil {
+		node.Stop()
+
+	}
 	node.Config = &conf
-	node.Stop()
+
 	fmt.Fprintln(w, "ok")
 	node.Start()
 	return
 }
 func (node *QuarkNode) WorkerConfig(w http.ResponseWriter, r *http.Request) {
 	cfg := config.ParseMainQuarkConfig(node.Config.ConfigFile)
-	workerCfg := config.WorkerConfig{Config: cfg, DatabaseUrl: node.NodeConfig.DatabaseUrl}
+	workerCfg := config.WorkerConfig{Config: cfg, DatabaseUrl: node.NodeConfig.DatabaseUrl, ServerConfig: &node.NodeConfig.ServerConfig}
 	RespondJSON(w, http.StatusOK, workerCfg)
 	return
 }
@@ -79,11 +83,32 @@ func (node *QuarkNode) ConnectMaster() {
 		log.Println("error of connect QuarkNode to Master server")
 	}
 }
+func (node *QuarkNode) SendStop(w http.ResponseWriter, r *http.Request) {
+	conf := models.TestModel{}
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	if err := decoder.Decode(&conf); err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	res, err := http.Post(node.NodeConfig.MasterHostUrl+"/api/test/localstop/", "application/json", bytes.NewBufferString(config.ParseToString(conf)))
+	if res != nil && res.StatusCode == http.StatusOK {
+		log.Println("Sucess stop")
+	} else {
+		log.Println("stopped")
+	}
+	if err != nil {
+		log.Println(err)
+	}
+}
 
 func (node *QuarkNode) initRouter() *mux.Router {
 	muxRouter := mux.NewRouter()
 	muxRouter.HandleFunc("/start", node.StartHandler).Methods("POST")
+	muxRouter.HandleFunc("/start", node.StartHandler).Methods("POST")
 	muxRouter.HandleFunc("/stop", node.StopHandler).Methods("POST")
+	muxRouter.HandleFunc("/localstop", node.SendStop).Methods("POST")
+
 	muxRouter.HandleFunc("/stats", node.StatData).Methods("GET")
 	muxRouter.HandleFunc("/", node.WorkerConfig).Methods("GET")
 	return muxRouter
