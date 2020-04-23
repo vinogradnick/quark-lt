@@ -1,23 +1,40 @@
 package node_exec
 
 import (
-	"log"
+	"bytes"
+	"fmt"
+	"os"
 	"os/exec"
 
 	"github.com/sirupsen/logrus"
 )
 
-func ExecPart(program string, args string) {
+func ExecPart() {
+	path, err := os.Getwd()
 
-	cmd := exec.Command(program, args)
-
+	cmd := exec.Command("./quark_worker", "w")
+	cmd.Dir = path
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
 	logrus.Println("Running Worker command and waiting for it to finish...")
-	err := cmd.Start()
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Printf("Waiting for command to finish...")
-	err = cmd.Wait()
-	log.Print("Command finished with error: %v", err)
+
+	err = cmd.Run()
+	logrus.Println("Worker-[%s] exit with err <==%v", stderr.String(), err.Error())
+}
+func ExecSsh(program string, conf string) {
+
+	path, err := os.Getwd()
+
+	var stderr bytes.Buffer
+	cmd := exec.Command(program, conf, "/bin/bash")
+	cmd.Dir = path
+	cmd.Stderr = &stderr
+
+	logrus.Println("Running Agent command and waiting for it to finish...")
+
+	err = cmd.Run()
+	fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
+	logrus.Warnf("SSH_Agent %v:%s", err, stderr.String())
+	logrus.Warnf("Command finished with error: %v", err)
 
 }

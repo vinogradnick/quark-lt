@@ -2,11 +2,12 @@ package app
 
 import (
 	"fmt"
+	"net/http"
+	"sync"
+
 	"github.com/SkyrisBactera/pkill"
 	apiserver_models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
 	node_exec "github.com/vinogradnick/quark-lt/pkg/node-exec"
-	"net/http"
-	"sync"
 
 	"github.com/sirupsen/logrus"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
@@ -37,9 +38,7 @@ func NewQuarkNode(conf *config.QuarkNodeConfig) *QuarkNode {
 
 func (node *QuarkNode) Start() {
 	logrus.Println("Launch Quark Worker")
-	go func() {
-		node_exec.ExecPart("./quark_worker", "w")
-	}()
+	node_exec.ExecPart()
 
 	//default:
 	//	go node_exec.ExecPart("./quark_worker ", "w")

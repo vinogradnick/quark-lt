@@ -4,12 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
-	"log"
-	"net/http"
 )
 
 func (node *QuarkNode) StartHandler(w http.ResponseWriter, r *http.Request) {
@@ -29,7 +30,7 @@ func (node *QuarkNode) StartHandler(w http.ResponseWriter, r *http.Request) {
 	node.Config = &conf
 
 	fmt.Fprintln(w, "ok")
-	node.Start()
+	go node.Start()
 	return
 }
 func (node *QuarkNode) WorkerConfig(w http.ResponseWriter, r *http.Request) {
