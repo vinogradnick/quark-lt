@@ -15,7 +15,12 @@
 vendor/
 .idea/*
 
-build/unix/*
-build/windows/*
+build/quark-apiserver.*
+build/quark-node.*
+build/quark_worker.*
+
+
 db/*
 .vscode/
+
+
