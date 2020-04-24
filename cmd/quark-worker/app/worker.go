@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/bradhe/stopwatch"
+
 	"github.com/vinogradnick/quark-lt/pkg/metrics"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )

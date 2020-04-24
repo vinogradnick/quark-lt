@@ -18,7 +18,12 @@ vendor/
 build/quark-apiserver.*
 build/quark-node.*
 build/quark_worker.*
+build/quark-tube.*
 
+build/quark-apiserver*
+build/quark-node*
+build/quark_worker*
+build/quark-tube*
 
 db/*
 .vscode/

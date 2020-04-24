@@ -6,6 +6,7 @@ import (
 
 	_ "github.com/influxdata/influxdb1-client" // this is important because of the bug in go mod
 	client "github.com/influxdata/influxdb1-client/v2"
+
 	"github.com/vinogradnick/quark-lt/pkg/metrics"
 )
 
@@ -16,7 +17,9 @@ type DbWorker struct {
 }
 
 func NewDbWorker(url string, target string) *DbWorker {
+	log.Println(url)
 	if len(url) > 0 {
+
 		c, err := client.NewHTTPClient(client.HTTPConfig{
 			Addr: url,
 		})
@@ -33,8 +36,9 @@ func (worker *DbWorker) WriteMetrics(sshMetrics *metrics.SSHMetrics, targetMetri
 
 	bp, _ := client.NewBatchPoints(client.BatchPointsConfig{
 		Database:  "quarklt",
-		Precision: "1m",
+		Precision: "1s",
 	})
+	log.Println(worker.TargetServer)
 	tags := map[string]string{
 		"target_server": worker.TargetServer,
 	}

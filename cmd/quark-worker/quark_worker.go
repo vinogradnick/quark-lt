@@ -2,13 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app"
-	"github.com/vinogradnick/quark-lt/pkg/util/quark_logger"
 	"os"
 	"sync"
 
+	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
+	"github.com/vinogradnick/quark-lt/pkg/util/quark_logger"
 )
 
 var (
@@ -34,7 +33,6 @@ func main() {
 	quark_logger.SetupLogger(quark_logger.STDOUT_LOGGER)
 
 	wConfig := ParseDatafile(args[0])
-	fmt.Println(config.ParseToString(wConfig))
 	instance := app.NewAppWorker(&sync.WaitGroup{}, wConfig.Config, wConfig)
 	instance.Start()
 }

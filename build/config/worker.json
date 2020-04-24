@@ -1,34 +1,29 @@
 {
   "config": {
-    "name": "host",
-    "server-host": "hosting",
+    "name": "gl.m,,.nm,n,n,n,nm,",
+    "server-host": "dsadsadsa",
     "site-setup": {
-      "schedules": [{
-        "routing": [{
-            "url": "http://localhost:1488",
-            "context": "",
-            "statusCode": 200,
-            "requestType": "GET"
+      "schedules": [
+        {
+          "routing": [
+            {
+              "url": "http://localhost:1488",
+              "context": "",
+              "statusCode": 200,
+              "requestType": "GET"
+            }
+          ],
+          "exp-load": {
+            "value": 120,
+            "duration": "4s"
           },
-          {
-            "url": "http://localhost:3000",
-            "context": "",
-            "statusCode": 200,
-            "requestType": "GET"
-          }
-        ],
-        "step-load": {
-          "start": 1,
-          "end": 10,
-          "duration": "1m",
-          "step": 1
-        },
-        "const-load": null,
-        "line-load": null,
-        "exp-load": null,
-        "Stress": null,
-        "Performance": null
-      }],
+          "const-load": null,
+          "line-load": null,
+
+          "Stress": null,
+          "Performance": null
+        }
+      ],
       "helpers": {
         "ssh-agent": {
           "host": "",
@@ -44,5 +39,5 @@
     "host": "localhost",
     "port": 7777
   },
-  "database_url": "http:localhost:8086"
+  "database_url": "http://localhost:8086"
 }

@@ -11,10 +11,9 @@ import (
 
 	"github.com/vinogradnick/quark-lt/cmd/quark-worker/app/db_worker"
 	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
-	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
-
 	"github.com/vinogradnick/quark-lt/pkg/metrics"
 	"github.com/vinogradnick/quark-lt/pkg/util/agents/ssh_agent"
+	"github.com/vinogradnick/quark-lt/pkg/util/algorithm"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
@@ -76,6 +75,7 @@ func (aw *AppWorker) StartPool(rps int32, road []*config.RoadMap) {
 
 */
 func (aw *AppWorker) StartExporter() {
+	log.Println("start exporter")
 	for {
 		select {
 		case <-aw.quarkWorker.StatusChan:
@@ -87,6 +87,7 @@ func (aw *AppWorker) StartExporter() {
 				sshData := aw.sshAgent.ReadMetric()
 				go aw.dbWorker.WriteMetrics(sshData, data)
 			} else {
+				log.Println("start exporter")
 				go aw.dbWorker.WriteMetrics(nil, data)
 			}
 		}
@@ -138,6 +139,8 @@ func NewAppWorker(wg *sync.WaitGroup, cfg *config.QuarkLTConfig, cfgWorker *conf
 	if cfg.SiteSetup.Helpers != nil {
 		agent = cfg.SiteSetup.Helpers.SshAgent
 	}
+	log.Println(cfg.ServerHost)
+	log.Println("---------------------------------------------------------")
 	return &AppWorker{
 		wg:               wg,
 		sshAgent:         ssh_agent.NewSshAgent(agent),

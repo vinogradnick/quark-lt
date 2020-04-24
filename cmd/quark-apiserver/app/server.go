@@ -61,13 +61,22 @@ func (api *ApiServer) StartServer() {
 
 	ctl.RunMigration()
 	r := mux.NewRouter()
-	fs := http.FileServer(http.Dir("client"))
-	//r.HandleFunc("/", homeHandler)
-	r.Handle("/", fs)
+
 	apiRouter := r.PathPrefix("/api").Subrouter()
 	api.NodeApi(apiRouter, ctl)
 	api.TestApi(apiRouter, ctl)
 	api.UsersApi(apiRouter, ctl)
+
+
+
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./client/static/"))))
+	// Serve index page on all unhandled routes
+	r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./client/index.html")
+	})
+
+
+
 	log.Printf("QuarkLT server started at  port: %d ", api.Conf.Port)
 	log.Printf("Api server is active on http://%s:%d/api/", api.Conf.Host, api.Conf.Port)
 	log.Fatalln(http.ListenAndServe(fmt.Sprintf(":%d", api.Conf.Port), r))

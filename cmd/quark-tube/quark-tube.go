@@ -1,10 +1,14 @@
 package main
 
 import (
-	node_exec "github.com/vinogradnick/quark-lt/pkg/node-exec"
+	"fmt"
+	"net/http"
 )
-
+var counter=0
 func main() {
-
-	node_exec.ExecPart("./quark_worker", "w")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		counter++
+		fmt.Println( counter)
+	})
+	http.ListenAndServe(":1488", nil)
 }

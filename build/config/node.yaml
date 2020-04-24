@@ -1,6 +1,6 @@
 name: "node-1"
 uuid: "fdksfldsflsdklfds"
-databaseurl: "http:localhost:8086"
+databaseurl: "http://localhost:8086"
 serverconfig:
   host: "localhost"
   port: 7777
