@@ -15,6 +15,22 @@ type ScheduleConf struct {
 	Performance *algorithms.MaxPerformance
 }
 
+func (sc *ScheduleConf) GetActive() string {
+	if sc.StepLoad != nil {
+		return "Линейная"
+	}
+	if sc.ConstLoad != nil {
+		return "Константная"
+	}
+	if sc.ExpLoad != nil {
+		return "Экспоненциальная "
+	}
+	if sc.Performance != nil {
+		return "Максимальная нагрузка"
+	}
+	return "Не определено"
+}
+
 type RoadMap struct {
 	Url         string `json:"url"`
 	Context     string `json:"context"`

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/gorilla/mux"
 	models "github.com/vinogradnick/quark-lt/pkg/apiserver-models"
-
 	"net/http"
 )
 
@@ -29,6 +28,43 @@ func (app *AppController) CreateUser(w http.ResponseWriter, r *http.Request) {
 	RespondJSON(w, http.StatusOK, "success create user")
 	return
 }
+
+func (app *AppController) GetUsers(w http.ResponseWriter, r *http.Request) {
+	var users []*models.User
+	err := app.db.Connection.Find(&users).Error
+	if err != nil {
+
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	RespondJSON(w, http.StatusOK, &users)
+	return
+}
+
+func (app *AppController) UpdateUser(w http.ResponseWriter, r *http.Request) {
+
+	model := models.User{}
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&model); err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	defer r.Body.Close()
+
+	if err := app.db.Connection.Find(&model, "id =?", model.ID).Error; err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	if err := app.db.Connection.Save(&model).Error; err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	RespondJSON(w, http.StatusOK, struct {
+		Status string
+	}{Status: "updated user"})
+	return
+}
+
 func (app *AppController) RemoveUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 

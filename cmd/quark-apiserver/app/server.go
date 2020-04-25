@@ -47,9 +47,11 @@ func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *apiserver_controller.A
  */
 func (api *ApiServer) UsersApi(apiRouter *mux.Router, ctl *apiserver_controller.AppController) {
 	userRouter := apiRouter.PathPrefix("/user").Subrouter()
-	userRouter.HandleFunc("/create", ctl.CreateUser).Methods("POST")
-	userRouter.HandleFunc("/remove", ctl.RemoveUser).Methods("POST")
+	userRouter.HandleFunc("/create",apiserver_controller.JwtDefender(ctl.CreateUser)).Methods("POST")
+	userRouter.HandleFunc("/remove/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.RemoveUser)).Methods("POST")
 	userRouter.HandleFunc("/auth", ctl.GenerateToken).Methods("POST")
+	userRouter.HandleFunc("/list", apiserver_controller.JwtDefender(ctl.GetUsers)).Methods("GET")
+
 }
 func NewApiServer(conf *config.ApiServerConfig) *ApiServer {
 	return &ApiServer{Conf: conf}
