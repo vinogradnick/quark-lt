@@ -18,7 +18,7 @@ func (app *AppController) GetTimeSeriesData(w http.ResponseWriter, r *http.Reque
 	if err != nil {
 		RespondError(w, http.StatusBadGateway, err.Error())
 	} else {
-		ts := app.iflx.QueryDb(fmt.Sprintf(`select * from "%s" where target_server='%s' `, "gun-metrics", model.Target))
+		ts := app.iflx.QueryDb(fmt.Sprintf(`select * from "%s" where target_server='%s' AND time>=%s AND time<= %s`, "gun-metrics", model.Target,model.StartTime,model.EndTime))
 		//res := app.iflx.QueryDb(fmt.Sprintf(`select * from "%s" where target_server=%s AND time >= %s AND time <%s`, table, target, startTime, endTime))
 		if ts != nil {
 			RespondJSON(w, http.StatusOK, ts)
