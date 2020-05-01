@@ -1,12 +1,10 @@
 package apiserver_models
 
 import (
-	"log"
-	"time"
-
 	"github.com/jinzhu/gorm"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
 	"gopkg.in/yaml.v2"
+	"log"
 )
 
 type TestModel struct {
@@ -18,8 +16,8 @@ type TestModel struct {
 	Algorithm  string
 	ConfigFile string
 	Status     string
-	StartTime  time.Time
-	EndTime    time.Time
+	StartTime  string
+	EndTime    string
 }
 
 func (model *TestModel) ConvertYaml() {

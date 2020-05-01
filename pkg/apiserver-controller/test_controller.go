@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -98,7 +99,34 @@ func (app *AppController) GetTest(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-func (app *AppController) UploadFile(w http.ResponseWriter, r *http.Request)  {
+func (app *AppController) UploadFile(w http.ResponseWriter, r *http.Request) {
+	r.ParseMultipartForm(32 << 20)
+	file, _, err := r.FormFile("file")
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	defer file.Close()
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	cfg := config.ParseMainConfigYaml(data)
+
+	tModel := models.TestModel{
+		Uuid:       uuid.GenerateUuid(),
+		Name:       cfg.Name,
+		Target:     cfg.ServerHost,
+		ConfigFile: config.ParseJsonToString(cfg),
+		Algorithm:  cfg.SiteSetup.Schedules[0].GetActive(),
+	}
+	if err := CreateRecord(app.db.Connection, &tModel); err != nil {
+		RespondError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondJSON(w, http.StatusOK, "Success")
+	return
 
 }
 
@@ -127,8 +155,9 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	}
 	err = app.db.Connection.First(&node).Error
 	err = app.RunInNode(node, &test)
+	currentTime := time.Now()
 	if err == nil {
-		test.StartTime = time.Now()
+		test.StartTime = currentTime.Format("2006-01-02 15:04:05")
 		test.Status = "active"
 		test.NodeId = node.ID
 		err = app.db.Connection.Save(&test).Error
@@ -161,6 +190,8 @@ func (app *AppController) LocalStop(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(config.ParseToString(t))
 	t.Status = "stopped"
+	test.EndTime = time.Now().Format("2006-01-02 15:04:05")
+
 	if err := app.db.Connection.Save(&t).Error; err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
@@ -189,7 +220,7 @@ func (app *AppController) StopTest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_ = app.StopInNode(node, test.ConfigFile)
-	test.EndTime = time.Now()
+	test.EndTime = time.Now().Format("2006-01-02 15:04:05")
 	test.Status = "stopped"
 	if err := app.db.Connection.Save(&test).Error; err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
