@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
@@ -54,7 +55,7 @@ func (app *AppController) CreateTest(w http.ResponseWriter, r *http.Request) {
 		Name:       model.Name,
 		Target:     model.ServerHost,
 		ConfigFile: config.ParseJsonToString(model),
-		Algorithm:  "Алгоритма",
+		Algorithm:  model.SiteSetup.Schedules[0].GetActive(),
 	}
 	if err := CreateRecord(app.db.Connection, &tModel); err != nil {
 		RespondError(w, http.StatusInternalServerError, err.Error())
@@ -96,6 +97,11 @@ func (app *AppController) GetTest(w http.ResponseWriter, r *http.Request) {
 	RespondJSON(w, http.StatusOK, &model)
 	return
 }
+
+func (app *AppController) UploadFile(w http.ResponseWriter, r *http.Request)  {
+
+}
+
 func (app *AppController) GetTestByCommit(w http.ResponseWriter, r *http.Request) {
 
 	test := models.TestModel{}
@@ -122,6 +128,7 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	err = app.db.Connection.First(&node).Error
 	err = app.RunInNode(node, &test)
 	if err == nil {
+		test.StartTime = time.Now()
 		test.Status = "active"
 		test.NodeId = node.ID
 		err = app.db.Connection.Save(&test).Error
@@ -182,7 +189,7 @@ func (app *AppController) StopTest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_ = app.StopInNode(node, test.ConfigFile)
-
+	test.EndTime = time.Now()
 	test.Status = "stopped"
 	if err := app.db.Connection.Save(&test).Error; err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
