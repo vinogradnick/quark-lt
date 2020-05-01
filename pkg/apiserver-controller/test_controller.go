@@ -97,6 +97,11 @@ func (app *AppController) GetTest(w http.ResponseWriter, r *http.Request) {
 	RespondJSON(w, http.StatusOK, &model)
 	return
 }
+
+func (app *AppController) UploadFile(w http.ResponseWriter, r *http.Request)  {
+
+}
+
 func (app *AppController) GetTestByCommit(w http.ResponseWriter, r *http.Request) {
 
 	test := models.TestModel{}

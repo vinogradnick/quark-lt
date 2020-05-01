@@ -2,11 +2,12 @@ package app
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/vinogradnick/quark-lt/pkg/apiserver-controller"
-	"github.com/vinogradnick/quark-lt/pkg/util/config"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	apiserver_controller "github.com/vinogradnick/quark-lt/pkg/apiserver-controller"
+	"github.com/vinogradnick/quark-lt/pkg/util/config"
 )
 
 type ApiServer struct {
@@ -38,7 +39,8 @@ func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *apiserver_controller.A
 	testRouter.HandleFunc("/list", apiserver_controller.JwtDefender(ctl.GetTestList)).Methods("GET")
 	testRouter.HandleFunc("/get/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetTest)).Methods("GET")
 	testRouter.HandleFunc("/series/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetTimeSeriesData)).Methods("GET")
-	testRouter.HandleFunc("/localstop", ctl.LocalStop).Methods("POST")
+	testRouter.HandleFunc("/localstop", ctl.LocalStop).Methods("POST"),
+	testRouter.HandleFunc("/upload",)
 
 }
 
@@ -47,7 +49,7 @@ func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *apiserver_controller.A
  */
 func (api *ApiServer) UsersApi(apiRouter *mux.Router, ctl *apiserver_controller.AppController) {
 	userRouter := apiRouter.PathPrefix("/user").Subrouter()
-	userRouter.HandleFunc("/create",apiserver_controller.JwtDefender(ctl.CreateUser)).Methods("POST")
+	userRouter.HandleFunc("/create", apiserver_controller.JwtDefender(ctl.CreateUser)).Methods("POST")
 	userRouter.HandleFunc("/remove/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.RemoveUser)).Methods("POST")
 	userRouter.HandleFunc("/auth", ctl.GenerateToken).Methods("POST")
 	userRouter.HandleFunc("/list", apiserver_controller.JwtDefender(ctl.GetUsers)).Methods("GET")
@@ -69,15 +71,11 @@ func (api *ApiServer) StartServer() {
 	api.TestApi(apiRouter, ctl)
 	api.UsersApi(apiRouter, ctl)
 
-
-
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./client/static/"))))
 	// Serve index page on all unhandled routes
 	r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./client/index.html")
 	})
-
-
 
 	log.Printf("QuarkLT server started at  port: %d ", api.Conf.Port)
 	log.Printf("Api server is active on http://%s:%d/api/", api.Conf.Host, api.Conf.Port)

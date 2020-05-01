@@ -1,0 +1,25 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+- name: quark-lt
+  path: .
+  commands: {}
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /cmd
+    - /pkg
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
+    - build
+    - examples
+    scripts:
+      - type: after
+        command: cd ./build
+        output: true
+       
