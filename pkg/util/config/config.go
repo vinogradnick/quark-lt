@@ -2,12 +2,12 @@ package config
 
 type QuarkLTConfig struct {
 	Name       string        `json:"name"`
-	ServerHost string        `json:"server-host"`
-	SiteSetup  SiteSetupConf `json:"site-setup"`
+	ServerHost string        `json:"server-host",yaml:"server-host"`
+	SiteSetup  SiteSetupConf `json:"site-setup",yaml:"site-setup"`
 }
 
 type Helpers struct {
-	SshAgent *SshAgentConf `json:"ssh-agent"`
+	SshAgent *SshAgentConf `json:"ssh-agent",yaml:"ssh-agent"`
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ type SshAgentConf struct {
 	User string `json:"user"`
 	Port int    `json:"port"`
 
-	AuthMethod *AuthMethod `json:"auth-method"`
+	AuthMethod *AuthMethod `json:"auth-method",yaml:"auth-method"`
 }
 
 func ValidateSshAgentConf(agentConf *SshAgentConf) bool {
@@ -42,8 +42,8 @@ func ValidateSshAgentConf(agentConf *SshAgentConf) bool {
 //-----------------------------------------------------------------------------------------------------
 
 type AuthMethod struct {
-	UserAuth *UserAuth `json:"user-auth"`
-	KeyAuth  *KeyAuth  `json:"key-auth"`
+	UserAuth *UserAuth `json:"user-auth",yaml:"user-auth"`
+	KeyAuth  *KeyAuth  `json:"key-auth",yaml:"key-auth"`
 }
 
 //-----------------------------------------------------------------------------------------------------

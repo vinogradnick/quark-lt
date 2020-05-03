@@ -35,7 +35,7 @@ func (aw *AppWorker) Start() {
 	aw.wg.Add(1)
 	aw.RunSchedule()
 	log.Println("QuarkWorker Successfully Completed ")
-	aw.SendStop()
+	aw.Stop()
 	os.Exit(9)
 	aw.wg.Wait()
 
@@ -112,9 +112,13 @@ func (aw *AppWorker) RunSchedule() {
 Остановка работы программы
 */
 func (aw *AppWorker) Stop() {
-	aw.cancel()
+	if aw.cancel != nil {
+		aw.cancel()
+	}
+
 	aw.quarkWorker.StatusChan <- true
 	aw.wg.Done()
+	aw.SendStop()
 }
 func (aw *AppWorker) SendStop() {
 	if aw.workerStatConfig.ServerConfig != nil {
@@ -127,6 +131,7 @@ func (aw *AppWorker) SendStop() {
 			log.Println("success")
 		}
 	}
+	aw.wg.Done()
 
 }
 

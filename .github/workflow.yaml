@@ -1,18 +1,26 @@
-on: [push, pull_request]
-name: Test
+name: Go
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
-  test:
-    strategy:
-      matrix:
-        go-version: [1.12.x, 1.13.x]
-        platform: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.platform }}
+  build:
+    name: Build
+    runs-on: ubuntu-latest
     steps:
-      - name: Install Go
-        uses: actions/setup-go@v1
+
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
         with:
-          go-version: ${{ matrix.go-version }}
-      - name: Checkout code
+          go-version: ^1.13
+        id: go
+
+      - name: Check out code into the Go module directory
         uses: actions/checkout@v2
+      - name: Get dependencies
+        run: curl https://glide.sh/get | sh
+      - name: Build
+        run: go build -v .
       - name: Test
-        run: go test ./...
+        run: go test -v .
