@@ -40,6 +40,20 @@ func (influxWorker *InfluxDbWorker) QueryDb(cmd string) interface{} {
 
 	return ConvertSeriesMap(response)
 }
+func (influxWorker *InfluxDbWorker) SimpleQuery(cmd string) *influxClient.Response {
+	q := influxClient.Query{
+		Command:  cmd,
+		Database: influxWorker.DatabaseName,
+	}
+
+	response, err := influxWorker.InfluxConnection.Query(q)
+
+	if err != nil {
+		log.Println(err)
+		return nil
+	}
+	return response
+}
 func ConvertSeriesMap(data *influxClient.Response) interface{} {
 	//var arr []map[string]interface{}
 	return data.Results

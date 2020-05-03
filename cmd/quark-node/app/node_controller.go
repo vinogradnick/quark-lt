@@ -92,7 +92,8 @@ func (node *QuarkNode) SendStop(w http.ResponseWriter, r *http.Request) {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
 	}
-	res, err := http.Post(node.NodeConfig.MasterHostUrl+"/api/test/localstop/", "application/json", bytes.NewBufferString(config.ParseToString(conf)))
+	log.Println(config.ParseToString(&conf))
+	res, err := http.Post(node.NodeConfig.MasterHostUrl+"/api/test/localstop", "application/json", bytes.NewBufferString(config.ParseJsonToString(node.Config)))
 	if res != nil && res.StatusCode == http.StatusOK {
 		log.Println("Sucess stop")
 	} else {

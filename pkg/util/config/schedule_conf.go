@@ -6,13 +6,13 @@ import (
 )
 
 type ScheduleConf struct {
-	Routing     []*RoadMap             `json:"routing"`
-	StepLoad    *algorithms.StepConf   `json:"step-load"`
-	ConstLoad   *algorithms.ConstConf  `json:"const-load"`
-	LinearLoad  *algorithms.LinearConf `json:"line-load"`
-	ExpLoad     *algorithms.ExpConf    `json:"exp-load"`
-	Stress      *algorithms.Stress
-	Performance *algorithms.MaxPerformance
+	Routing     []*RoadMap             `json:"routing",yaml:"routing"`
+	StepLoad    *algorithms.StepConf   `json:"step-load",yaml:"step-load"`
+	ConstLoad   *algorithms.ConstConf  `json:"const-load",yaml:"const-load"`
+	LinearLoad  *algorithms.LinearConf `json:"line-load",yaml:"exp-load"`
+	ExpLoad     *algorithms.ExpConf    `json:"exp-load",yaml:"exp-load"`
+	Stress      *algorithms.Stress     `json:"stress-load",yaml:"stress-load"`
+	Performance *algorithms.MaxPerformance  `json:"performance-load",yaml:"performance-load"`
 }
 
 func (sc *ScheduleConf) GetActive() string {
@@ -32,10 +32,10 @@ func (sc *ScheduleConf) GetActive() string {
 }
 
 type RoadMap struct {
-	Url         string `json:"url"`
+	Url         string `json:"url",`
 	Context     string `json:"context"`
 	StatusCode  int    `json:"statusCode"`
-	RequestType string `json:"requestType"`
+	RequestType string `json:"requestType",yaml:"request-type"`
 }
 
 func (s ScheduleConf) Validate() bool {

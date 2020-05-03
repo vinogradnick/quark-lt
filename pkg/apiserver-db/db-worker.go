@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/vinogradnick/quark-lt/pkg/util/config"
+	"log"
 )
 
 type DbWorker struct {
@@ -13,7 +14,7 @@ type DbWorker struct {
 }
 
 func NewDbWorker(conf *config.ApiServerDatabaseConfig) *DbWorker {
-	return &DbWorker{File: "data.sqlite", Config: conf}
+	return &DbWorker{File: "./data.sqlite", Config: conf}
 }
 func (db *DbWorker) Connect() {
 	var connection *gorm.DB
@@ -29,7 +30,7 @@ func (db *DbWorker) Connect() {
 	}
 	db.Connection = connection
 	if err != nil {
-		panic("failed to connect database")
+		log.Panic(err.Error())
 	}
 
 }

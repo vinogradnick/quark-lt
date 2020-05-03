@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет по тестированию <b>{{.ServerHost}}</b></title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/highlight.min.js"></script>
+</head>
+
+<body style="font-family: Geneva, Arial, Helvetica, sans-serif;">
+    <img src="https://raw.githubusercontent.com/vinogradnick/quark-lt/master/logo.png" alt="">
+    <h1>Отчет по тестированию</h1>
+    <h2>Назначение документа</h2>
+    <p>Основная цель данного документа - предоставить обработанные систематизированные результаты нагрузочного
+        тестирования веб-сервера <b>{{.ServerHost}}</b>, описать отклонения при проведение нагрузочного тестирования</p>
+
+    <h2>Основные положения</h2>
+    <p>Основной целью проведения нагрузочного тестирования веб-сервера <b><b>{{.ServerHost}}</b></b> является оценка
+        возможностей
+        системы</p>
+    <p> Для определения производительности веб-сервера <b>{{.ServerHost}}</b></p>
+
+    <ul>
+        <li>
+            Определение максимальной производительности (Количество запросов в секунду) веб-сервера
+            <b>{{.ServerHost}}</b>
+        </li>
+
+    </ul>
+    <h4>Методика тестирования</h4>
+    <p>Для тестирования использовался алгоритм <b>{{.Algorithm}}</b></p>
+
+    <h4>Конфигурация тестирования</h4>
+    <pre>
+        <code class="language-json">
+            {{.ConfigFile}}
+        </code>
+    </pre>
+   
+    <h4>Ограничение тестирования</h4>
+    <p>Ограничений тестирования нет</p>
+
+    <h5>Выводы</h5>
+    <p><span>Количество запросов в секунду </span> {{.RPS}}</p>
+    <p><span>Максимальное время ответа </span> {{.MaxRespTime}}</p>
+    <p><span>Минимальное время ответа</span> {{.MinRespTime}}</p>
+    <h5>Системные метрики</h5>
+    <p>Нагрузка на процессор -- {{.CpuLoad}}</p>
+    <p>Количество потребляемой памяти -- {{.MemoryUsed}}</p>
+    <p>Нагрузка на диск -- {{.DiskLoad}}</p>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

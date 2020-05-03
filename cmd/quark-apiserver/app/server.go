@@ -39,8 +39,9 @@ func (api *ApiServer) TestApi(apiRouter *mux.Router, ctl *apiserver_controller.A
 	testRouter.HandleFunc("/list", apiserver_controller.JwtDefender(ctl.GetTestList)).Methods("GET")
 	testRouter.HandleFunc("/get/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetTest)).Methods("GET")
 	testRouter.HandleFunc("/series/{id:[0-9]+}", apiserver_controller.JwtDefender(ctl.GetTimeSeriesData)).Methods("GET")
-	testRouter.HandleFunc("/localstop", ctl.LocalStop).Methods("POST"),
-	testRouter.HandleFunc("/upload",)
+	testRouter.HandleFunc("/localstop", ctl.LocalStop).Methods("POST")
+	testRouter.HandleFunc("/upload", ctl.UploadFile).Methods("POST")
+	testRouter.HandleFunc("/report/{id:[0-9]+}", ctl.MakeReport).Methods("GET")
 
 }
 

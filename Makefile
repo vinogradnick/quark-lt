@@ -1,7 +1,8 @@
-all: build_windows
+all: build.linux
 
 
 
-
-build_windows:
-	go build cmd/quark_lt/*.go
+build.linux:
+	go build cmd/quark-apiserver/quark-apiserver.go
+	go build cmd/quark-node/*.go
+	go build cmd/quark-worker/*.go

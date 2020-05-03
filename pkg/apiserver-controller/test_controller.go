@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -56,6 +58,7 @@ func (app *AppController) CreateTest(w http.ResponseWriter, r *http.Request) {
 		Target:     model.ServerHost,
 		ConfigFile: config.ParseJsonToString(model),
 		Algorithm:  model.SiteSetup.Schedules[0].GetActive(),
+		Status:     "active",
 	}
 	if err := CreateRecord(app.db.Connection, &tModel); err != nil {
 		RespondError(w, http.StatusInternalServerError, err.Error())
@@ -97,8 +100,86 @@ func (app *AppController) GetTest(w http.ResponseWriter, r *http.Request) {
 	RespondJSON(w, http.StatusOK, &model)
 	return
 }
+func (app *AppController) MakeReport(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	model := models.TestModel{}
+	id := vars["id"]
+	fmt.Println(id)
+	err := app.db.Connection.Find(&model, "id =?", id).Error
+	log.Println("------------------------------------------------------------")
+	log.Printf("%v", config.ParseJsonToString(model))
+	log.Println("------------------------------------------------------------")
+	if err != nil {
+		RespondError(w, http.StatusBadGateway, err.Error())
+		return
+	} else {
+		ts := app.iflx.SimpleQuery(fmt.Sprintf(`select * from "gun-metrics" where target_server='%s' `, model.Target))
+		if ts == nil {
+			RespondError(w, http.StatusBadRequest, "ERRR")
+			return
+		}
 
-func (app *AppController) UploadFile(w http.ResponseWriter, r *http.Request)  {
+		mdl := models.NewTestResult(&model)
+		res := ts.Results[0].Series
+		log.Println("------------------------------------------------------------")
+		log.Printf("%v", config.ParseJsonToString(res))
+		log.Println("------------------------------------------------------------")
+		if len(res) > 0 {
+			var rps int64 = 0
+			var minResponse int64 = 0
+			var maxResponse int64 = 0
+			for _, value := range res[0].Values {
+				tempRps, _ := strconv.ParseInt(string(value[3].(json.Number)), 10, 32)
+				tempMaxResp, _ := strconv.ParseInt(string(value[2].(json.Number)), 10, 32)
+				if rps > tempRps {
+					rps = tempRps
+				}
+				if tempMaxResp > maxResponse {
+					maxResponse = tempMaxResp
+				}
+				if tempMaxResp < minResponse {
+					minResponse = tempMaxResp
+				}
+			}
+			mdl.RPS = rps
+			mdl.MaxRespTime = maxResponse
+			mdl.MinRespTime = minResponse
+
+			mdl.RenderThis(w)
+			return
+		}
+	}
+	return
+}
+
+func (app *AppController) UploadFile(w http.ResponseWriter, r *http.Request) {
+	r.ParseMultipartForm(32 << 20)
+	file, _, err := r.FormFile("file")
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	defer file.Close()
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	cfg := config.ParseMainConfigYaml(data)
+
+	tModel := models.TestModel{
+		Uuid:       uuid.GenerateUuid(),
+		Name:       cfg.Name,
+		Target:     cfg.ServerHost,
+		ConfigFile: config.ParseJsonToString(cfg),
+		Algorithm:  cfg.SiteSetup.Schedules[0].GetActive(),
+	}
+	if err := CreateRecord(app.db.Connection, &tModel); err != nil {
+		RespondError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondJSON(w, http.StatusOK, "Success")
+	return
 
 }
 
@@ -120,15 +201,20 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	test := models.TestModel{}
 	node := models.NodeModel{}
 	log.Println(id)
-	err := app.db.Connection.Find(&test, "id =?", id).Error
+	err := app.db.Connection.Find(&test, "id =? and status != 'active'", id, ).Error
 	if err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
 	}
-	err = app.db.Connection.First(&node).Error
+
+	if err := app.db.Connection.First(&node).Error; err != nil {
+		RespondError(w, http.StatusBadRequest, err.Error())
+		return
+	}
 	err = app.RunInNode(node, &test)
+	currentTime := time.Now()
 	if err == nil {
-		test.StartTime = time.Now()
+		test.StartTime = currentTime.Format("2006-01-02 15:04:05")
 		test.Status = "active"
 		test.NodeId = node.ID
 		err = app.db.Connection.Save(&test).Error
@@ -161,6 +247,8 @@ func (app *AppController) LocalStop(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(config.ParseToString(t))
 	t.Status = "stopped"
+	t.EndTime = time.Now().Format("2006-01-02 15:04:05")
+
 	if err := app.db.Connection.Save(&t).Error; err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
@@ -189,7 +277,7 @@ func (app *AppController) StopTest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_ = app.StopInNode(node, test.ConfigFile)
-	test.EndTime = time.Now()
+	test.EndTime = time.Now().Format("2006-01-02 15:04:05")
 	test.Status = "stopped"
 	if err := app.db.Connection.Save(&test).Error; err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())

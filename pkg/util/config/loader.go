@@ -19,6 +19,16 @@ func ParseMainConfig(arr []byte) *QuarkLTConfig {
 	}
 	return &cfg
 }
+
+func ParseMainConfigYaml(arr []byte) *QuarkLTConfig {
+	cfg := QuarkLTConfig{}
+	err := yaml.Unmarshal(arr, &cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return &cfg
+}
+
 func ParseMainQuarkConfig(data string) *QuarkLTConfig {
 	cfg := QuarkLTConfig{}
 	err := json.Unmarshal([]byte(data), &cfg)
