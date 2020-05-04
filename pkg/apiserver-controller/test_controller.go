@@ -58,7 +58,7 @@ func (app *AppController) CreateTest(w http.ResponseWriter, r *http.Request) {
 		Target:     model.ServerHost,
 		ConfigFile: config.ParseJsonToString(model),
 		Algorithm:  model.SiteSetup.Schedules[0].GetActive(),
-		Status:     "active",
+		Status:     "created",
 	}
 	if err := CreateRecord(app.db.Connection, &tModel); err != nil {
 		RespondError(w, http.StatusInternalServerError, err.Error())
@@ -201,7 +201,7 @@ func (app *AppController) StartTest(w http.ResponseWriter, r *http.Request) {
 	test := models.TestModel{}
 	node := models.NodeModel{}
 	log.Println(id)
-	err := app.db.Connection.Find(&test, "id =? and status != 'active'", id, ).Error
+	err := app.db.Connection.Find(&test, "id =? and status != 'active'", id).Error
 	if err != nil {
 		RespondError(w, http.StatusBadRequest, err.Error())
 		return
